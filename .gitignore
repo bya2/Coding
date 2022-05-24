@@ -3,3 +3,4 @@ tmp/
 package-lock*.json
 test/
 test*.*js
+exec/

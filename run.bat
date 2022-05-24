@@ -1,2 +1,2 @@
 @REM RUN
-node run.mjs
+node src/run.mjs

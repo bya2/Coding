@@ -1,5 +1,3 @@
-import process from "process";
-
 const runner = (_solution, _examples__arr) => {
   for (const [idx, example__obj] of _examples__arr.entries()) {
     const { answer, ...inputs__obj } = example__obj;
