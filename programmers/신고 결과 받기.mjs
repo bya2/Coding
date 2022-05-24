@@ -6,9 +6,6 @@ export const solution = (id_list, report, k) => {
 
   const r_map = report.reduce((obj, str) => {
     const [reporter, target] = str.split(" ");
-    if (!obj[reporter]) {
-      obj[reporter] = [];
-    }
     if (!obj[target]) {
       obj[target] = [];
     }
@@ -31,6 +28,25 @@ export const solution = (id_list, report, k) => {
 
   const result = Object.values(id_map);
 
+  return result;
+};
+
+export const other_solution = (id_list, report, k) => {
+  const reports__arr = [...new Set(report)].map((str) => str.split(" "));
+  const id_map = new Map();
+  const r_map = new Map();
+
+  for (const [reporter, target] of reports__arr) {
+    r_map.set(target, r_map.get(target) + 1 || 1);
+  }
+
+  for (const [reporter, target] of reports__arr) {
+    if (r_map.get(target) >= k) {
+      id_map.set(reporter, id_map.get(reporter) + 1 || 1);
+    }
+  }
+
+  const result = id_list.map(id => id_map.get(id) || 0);
   return result;
 };
 
