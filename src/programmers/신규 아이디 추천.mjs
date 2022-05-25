@@ -21,6 +21,25 @@ export const solution = (new_id) => {
   return new_id;
 };
 
+export const other_solution = (new_id) => {
+  let id = new_id
+    .toLocaleLowerCase("en-US")
+    .replace(/[^\w-_.]/g, "")
+    .replace(/\.+/g, ".")
+    .replace(/^\.|\.$/g, "")
+    .replace(/^$/, "a")
+    .slice(0, 15)
+    .replace(/\.$/, "");
+
+  const len = id.length;
+
+  if (len < 3) {
+    id += id.charAt(len - 1).repeat(3 - len);
+  }
+
+  return id;
+};
+
 export const examples__arr = [
   {
     new_id: "...!@BaT#*..y.abcdefghijklm",
