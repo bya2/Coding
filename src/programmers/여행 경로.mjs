@@ -3,7 +3,30 @@
 // [a -> b]
 // all
 
+// _lv, _port
 export const solution = (tickets) => {
+  const routes = [];
+
+  const dfs = (_curr_tickets, _loc, _route) => {
+    if (_curr_tickets.length === 0) {
+      routes.push(_route);
+    } else {
+      for (const [idx, [from, to]] of _curr_tickets.entries()) {
+        if (_loc === from) {
+          const new_tickets = [..._curr_tickets];
+          new_tickets.splice(idx, 1);
+          dfs(new_tickets, to, [..._route, to]);
+        }
+      }
+    }
+  };
+
+  dfs(tickets, "ICN", ["ICN"]);
+
+  return routes.sort()[0];
+};
+
+export const fail = (tickets) => {
   const q = [];
   const v = [];
   const paths = [];
