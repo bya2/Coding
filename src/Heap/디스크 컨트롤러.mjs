@@ -2,11 +2,11 @@ import Heap from "./index.mjs";
 
 export default class MinHeap extends Heap {
   compareParentIsBiggerThanChild(_pIdx, _cIdx) {
-    return this.queue[_pIdx] > this.queue[_cIdx];
+    return this.queue[_pIdx][1] > this.queue[_cIdx][1];
   }
 
   getSmallerNodeIdx(_leftIdx, _rightIdx) {
-    return this.queue[_leftIdx] < this.queue[_rightIdx] ? _leftIdx : _rightIdx;
+    return this.queue[_leftIdx][1] < this.queue[_rightIdx][1] ? _leftIdx : _rightIdx;
   }
 
   insert(_value) {
@@ -23,15 +23,25 @@ export default class MinHeap extends Heap {
   }
 
   pop() {
-    if (this.getSize() < 1) return null;
+    if (this.getSize() === 0) {
+      return null;
+    }
 
-    const smallest = this.getRoot();
+    const smallest = this.queue[this.rootIdx];
+
+    if (this.getSize() === 1) {
+      this.queue = [null];
+      return smallest;
+    }
+
     this.queue[1] = this.queue.pop();
 
     let currIdx = this.rootIdx;
     let [leftIdx, rightIdx] = this.getLeftAndRightChildIdx(currIdx);
 
-    if (!this.queue[leftIdx]) return smallest;
+    if (!this.queue[leftIdx]) {
+      return smallest;
+    }
 
     if (!this.queue[rightIdx]) {
       if (this.compareParentIsBiggerThanChild(currIdx, leftIdx)) {
