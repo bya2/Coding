@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Hash/베스트앨범.mjs";
+import { solution, examples__arr } from "./programmers/Stack/기능개발.mjs";
 
 (function () {
   console.log("Solve:");
