@@ -28,6 +28,7 @@ USER > ./all
 #### Stack
 
 - [기능개발](./src/programmers/Stack/%EA%B8%B0%EB%8A%A5%EA%B0%9C%EB%B0%9C.mjs)
+- [프린터](./src/programmers/Stack/%ED%94%84%EB%A6%B0%ED%84%B0.mjs)
 
 #### DFS / BFS
 
