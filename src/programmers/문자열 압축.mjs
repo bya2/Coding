@@ -2,34 +2,31 @@
 // BFS
 //
 export const solution = (s) => {
-  let sLen = s.length;
-  let halfLen = (sLen / 2) >> 0;
-  console.log(halfLen);
+  let zipStrLen = s.length;
+  let halfLen = (s.length / 2) >> 0;
 
-  for (let unit = 1; unit <= halfLen; ++unit) {
-    let str = "";
+  for (let sUnit = 1; sUnit <= halfLen; ++sUnit) {
+    let zipStr = "";
     let dupNum = 1;
     let sIdx = 0;
-    let tmpStr = s.slice(sIdx, unit);
+    let tmpStr = s.substr(sIdx, sUnit);
 
-    for (sIdx = unit; sIdx <= s.length; sIdx += unit) {
-      let currStr = s.slice(sIdx, unit);
+    for (sIdx = sUnit; sIdx <= s.length; sIdx += sUnit) {
+      let currStr = s.substr(sIdx, sUnit);
 
       if (tmpStr === currStr) {
         ++dupNum;
       } else {
-        str += dupNum === 1 ? tmpStr : dupNum + tmpStr;
+        zipStr += dupNum === 1 ? tmpStr : dupNum + tmpStr;
         dupNum = 1;
         tmpStr = currStr;
       }
     }
-    str += dupNum === 1 ? tmpStr : dupNum + tmpStr;
-    console.log(sLen, str);
-
-    sLen = Math.min(sLen, str.length);
+    zipStr += dupNum === 1 ? tmpStr : dupNum + tmpStr;
+    zipStrLen = Math.min(zipStrLen, zipStr.length);
   }
 
-  return sLen;
+  return zipStrLen;
 };
 
 export const examples__arr = [
