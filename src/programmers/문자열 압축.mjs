@@ -2,7 +2,7 @@
 // BFS
 //
 export const solution = (s) => {
-  let zipStrLen = s.length;
+  let zipStrLens = [];
   let halfLen = (s.length / 2) >> 0;
 
   for (let sUnit = 1; sUnit <= halfLen; ++sUnit) {
@@ -23,10 +23,11 @@ export const solution = (s) => {
       }
     }
     zipStr += dupNum === 1 ? tmpStr : dupNum + tmpStr;
-    zipStrLen = Math.min(zipStrLen, zipStr.length);
+
+    zipStrLens.push(zipStr.length);
   }
 
-  return zipStrLen;
+  return Math.min(...zipStrLens);
 };
 
 export const examples__arr = [
