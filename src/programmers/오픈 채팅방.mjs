@@ -1,7 +1,7 @@
 export const solution = (record) => {
   const msgs = [];
 
-  const dir = record.reduce((map, str, i) => {
+  const dir = record.reduce((map, str) => {
     const [behavior, uid, name] = str.split(" ");
     if (behavior === "Leave") return map;
     map.set(uid, name);
@@ -13,10 +13,10 @@ export const solution = (record) => {
 
     switch (behavior) {
       case "Enter":
-        msgs.push(`${dir.get(uid)}님이 들어왔습니다.`)
+        msgs.push(`${dir.get(uid)}님이 들어왔습니다.`);
         continue;
       case "Leave":
-        msgs.push(`${dir.get(uid)}님이 나갔습니다.`)
+        msgs.push(`${dir.get(uid)}님이 나갔습니다.`);
         continue;
       default:
         continue;
@@ -27,7 +27,25 @@ export const solution = (record) => {
 };
 
 export const other_solution = (record) => {
-  // codes...
+  const msgs = [];
+  const actions = [];
+  const stateMapping = {
+    Enter: "님이 들어왔습니다.",
+    Leave: "님이 나갔습니다.",
+  };
+  const dir = new Map();
+
+  for (const str of record) {
+    const [behavior, uid, name] = str.split(" ");
+    if (behavior !== "Change") actions.push([behavior, uid]);
+    if (behavior !== "Leave") dir.set(uid, name);
+  }
+
+  for (const [behavior, uid] of actions) {
+    msgs.push(`${dir.get(uid)}${stateMapping[behavior]}`);
+  }
+
+  return msgs;
 };
 
 export const examples__arr = [

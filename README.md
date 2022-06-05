@@ -50,6 +50,7 @@ USER > ./all
 - [신고 결과 받기](https://github.com/bya2/coding/blob/main/src/programmers/%EC%8B%A0%EA%B3%A0%20%EA%B2%B0%EA%B3%BC%20%EB%B0%9B%EA%B8%B0.mjs)
 - [신규 아이디 추천](https://github.com/bya2/coding/blob/main/src/programmers/%EC%8B%A0%EA%B7%9C%20%EC%95%84%EC%9D%B4%EB%94%94%20%EC%B6%94%EC%B2%9C.mjs)
 - [문자열 압축](./src/programmers/%EB%AC%B8%EC%9E%90%EC%97%B4%20%EC%95%95%EC%B6%95.mjs)
+- [오픈 채팅방](./src/programmers/%EC%98%A4%ED%94%88%20%EC%B1%84%ED%8C%85%EB%B0%A9.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
