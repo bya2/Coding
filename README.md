@@ -51,6 +51,8 @@ USER > ./all
 - [신규 아이디 추천](https://github.com/bya2/coding/blob/main/src/programmers/%EC%8B%A0%EA%B7%9C%20%EC%95%84%EC%9D%B4%EB%94%94%20%EC%B6%94%EC%B2%9C.mjs)
 - [문자열 압축](./src/programmers/%EB%AC%B8%EC%9E%90%EC%97%B4%20%EC%95%95%EC%B6%95.mjs)
 - [오픈 채팅방](./src/programmers/%EC%98%A4%ED%94%88%20%EC%B1%84%ED%8C%85%EB%B0%A9.mjs)
+- [숫자 문자열과 영단어](./src/programmers/%EC%88%AB%EC%9E%90%20%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%20%EC%98%81%EB%8B%A8%EC%96%B4.mjs)
+- [키패드 누르기](./src/programmers/%ED%82%A4%ED%8C%A8%EB%93%9C%20%EB%88%84%EB%A5%B4%EA%B8%B0.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
