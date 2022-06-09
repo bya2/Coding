@@ -1,32 +1,24 @@
-export const solution = (_board, _move) => {
+export const solution = (_board, _moves) => {
   let boom = 0;
-  const stack = [];
+  let stack = [];
 
-  const queueList = _board.reduce((arr, row) => {
-    for (const [idx, col] of row.entries()) {
-      if (col !== 0) {
-        if (!arr[idx]) {
-          arr[idx] = [];
-        }
-        arr[idx].push(col);
+  for (let pos of _moves) {
+    for (let row = 0; row < _board.length; ++row) {
+      const col = pos - 1;
+
+      if (_board[row][col] !== 0) {
+        stack = [...stack, _board[row][col]];
+        _board[row][col] = 0;
+        break;
       }
     }
+  }
 
-    return arr;
-  }, []);
-
-  let stackLen = 0;
-  for (const pos of _move) {
-    if (queueList[pos - 1]) {
-      stack.push(queueList[pos - 1].shift());
-      ++stackLen;
-
-      i f (stack[stackLen - 1] === stack[stackLen - 2]) {
-        stack.pop();
-        stack.pop();
-        ++boom;
-        stackLen -= 2;
-      }
+  for (let sIdx = stack.length; sIdx > 0; --sIdx) {
+    if (stack[sIdx] === stack[sIdx - 1]) {
+      ++boom;
+      stack.splice(sIdx-1, 2);
+      sIdx = stack.length;
     }
   }
 
