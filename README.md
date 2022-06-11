@@ -54,6 +54,7 @@ USER > ./all
 - [숫자 문자열과 영단어](./src/programmers/%EC%88%AB%EC%9E%90%20%EB%AC%B8%EC%9E%90%EC%97%B4%EA%B3%BC%20%EC%98%81%EB%8B%A8%EC%96%B4.mjs)
 - [키패드 누르기](./src/programmers/%ED%82%A4%ED%8C%A8%EB%93%9C%20%EB%88%84%EB%A5%B4%EA%B8%B0.mjs)
 - [크레딧 인형뽑기 게임](./src/programmers/%ED%81%AC%EB%A0%88%EB%94%A7%20%EC%9D%B8%ED%98%95%EB%BD%91%EA%B8%B0%20%EA%B2%8C%EC%9E%84.mjs)
+- [없는 숫자 더하기](./src/programmers/%EC%97%86%EB%8A%94%20%EC%88%AB%EC%9E%90%20%EB%8D%94%ED%95%98%EA%B8%B0.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
