@@ -57,6 +57,7 @@ USER > ./all
 - [없는 숫자 더하기](./src/programmers/%EC%97%86%EB%8A%94%20%EC%88%AB%EC%9E%90%20%EB%8D%94%ED%95%98%EA%B8%B0.mjs)
 - [음양 더하기](./src/programmers/%EC%9D%8C%EC%96%91%20%EB%8D%94%ED%95%98%EA%B8%B0.mjs)
 - [내적](./src/programmers/%EB%82%B4%EC%A0%81.mjs)
+- [소수 만들기](./src/programmers/%EC%86%8C%EC%88%98%20%EB%A7%8C%EB%93%A4%EA%B8%B0.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 

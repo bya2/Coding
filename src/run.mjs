@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/내적.mjs";
+import { solution, examples__arr } from "./programmers/소수 만들기.mjs";
 
 (function () {
   console.log("Solve:");

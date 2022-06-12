@@ -4,4 +4,4 @@ package-lock*.json
 test/
 test*.*js
 exec/
-*sample.js
+*sample*
