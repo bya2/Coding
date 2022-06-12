@@ -23,6 +23,14 @@ export const solution = (n) => {
   return result;
 };
 
+const change124 = (n) => {
+  return n === 0 ? "" : change124(parseInt((n - 1) / 3)) + [1, 2, 4][(n - 1) % 3];
+};
+
+export const other_solution = (n) => {
+  return change124(n);
+};
+
 export const examples__arr = [
   {
     n: 1,
