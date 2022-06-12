@@ -59,6 +59,7 @@ USER > ./all
 - [내적](./src/programmers/%EB%82%B4%EC%A0%81.mjs)
 - [소수 만들기](./src/programmers/%EC%86%8C%EC%88%98%20%EB%A7%8C%EB%93%A4%EA%B8%B0.mjs)
 - [멀쩡한 사각형](./src/programmers/%EB%A9%80%EC%A9%A1%ED%95%9C%20%EC%82%AC%EA%B0%81%ED%98%95.mjs)
+- [124 나라의 숫자](./src/programmers/124%20%EB%82%98%EB%9D%BC%EC%9D%98%20%EC%88%AB%EC%9E%90.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
