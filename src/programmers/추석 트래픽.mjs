@@ -1,7 +1,44 @@
-export const solution = (_lines) => {
+export const other_solution = (_lines) => {
+  let msTimes = [];
+  let maxAmount = 1;
+
+  for (const line of _lines) {
+    const [, S, T] = line.split(" ");
+    const [hour, minute, second] = S.split(":");
+    const S_ms = 1000 * (hour * 3600 + minute * 60 + second);
+    const T_ms = 1000 * T.slice(0, -1);
+    msTimes.push([S_ms - T_ms + 1, S_ms]);
+  }
+
+  const msTimesLen = msTimes.length;
+  for (let i = 0; i < msTimesLen - 1; ++i) {
+    const prevC = msTimes[i][1];
+    let range = [prevC, prevC];
+    let amount = 0;
+
+    for (let j = i + 1; j < msTimesLen; ++j) {
+      const nextS = msTimes[j][0];
+      if (nextS < range[0] && Math.abs(nextS - range[1]) <= 1000) {
+        ++amount;
+        if (nextS < range[0]) range[0] = nextS;
+      }
+
+      if (nextS > range[1] && Math.abs(nextS - range[0]) <= 1000) {
+        ++amount;
+        if (nextS > range[1]) range[1] = nextS;
+      }
+    }
+
+    maxAmount = maxAmount < amount ? amount : maxAmount;
+  }
+
+  return maxAmount;
+};
+
+export const other_solution2 = (_lines) => {
   const msTimes = [];
   const linesLen = _lines.length;
-  let amounts = [1];
+  let maxAmount = 1;
 
   for (let i = 0; i < linesLen; ++i) {
     let [, completionTime, processingTime] = _lines[i].split(" ");
@@ -15,15 +52,23 @@ export const solution = (_lines) => {
   const msTimesLen = msTimes.length;
   for (let i = 0; i < msTimesLen - 1; ++i) {
     let amount = 1;
+    const prevTime = msTimes[i][0];
+    let minTime = prevTime;
+    let maxTime = prevTime;
     for (let j = i + 1; j < msTimesLen; ++j) {
+      const nextTime = msTimes[j][0];
+
+      if (nextTime > minTime && nextTime < minTime + 1000) {
+      }
+
       if (Math.abs(msTimes[j][0] - msTimes[i][1]) < 1000) {
         ++amount;
       }
     }
-    amounts.push(amount);
+    maxAmount = maxAmount < amount ? amount : maxAmount;
   }
 
-  return Math.max(...amounts);
+  return maxAmount;
 };
 
 export const examples__arr = [
