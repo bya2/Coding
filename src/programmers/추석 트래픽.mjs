@@ -1,3 +1,34 @@
+// 로그 데이터 처리: 데이터의 시작점과 끝점을 이용해서 한 번의 루프만으로 처리 가능
+export const solution = (_lines) => {
+  let msTimes = [];
+
+  for (const line of _lines) {
+    const [, S, T] = line.split(" ");
+    const [hour, minute, second] = S.split(":");
+    const S_ms = 1000 * (hour * 3600 + minute * 60 + second * 1);
+    const T_ms = 1000 * T.slice(0, -1);
+    msTimes.push([1, S_ms - T_ms + 1]);
+    msTimes.push([0, S_ms + 1000]);
+  }
+
+  msTimes.sort((a, b) => {
+    if (a[1] - b[1] < 0) return -1;
+    return a - b;
+  });
+
+  let amount = 0, count = 0;
+  for (const [state] of msTimes) {
+    if (state) {
+      ++count;
+    } else {
+      amount = amount > count ? amount : count;
+      --count;
+    }
+  }
+
+  return amount;
+};
+
 export const other_solution = (_lines) => {
   let msTimes = [];
   let maxAmount = 1;
@@ -7,6 +38,7 @@ export const other_solution = (_lines) => {
     const [hour, minute, second] = S.split(":");
     const S_ms = 1000 * (hour * 3600 + minute * 60 + second);
     const T_ms = 1000 * T.slice(0, -1);
+    console.log(T_ms);
     msTimes.push([S_ms - T_ms + 1, S_ms]);
   }
 
