@@ -45,6 +45,14 @@ USER > ./all
 
 - [N으로 표현](https://github.com/bya2/coding/blob/main/src/programmers/N%EC%9C%BC%EB%A1%9C%20%ED%91%9C%ED%98%84.mjs)
 
+#### 이분탐색
+
+- [입국 심사](./src/programmers/%EC%9E%85%EA%B5%AD%EC%8B%AC%EC%82%AC.mjs)
+
+#### 그래프
+
+- [가장 먼 노드](./src/programmers/%EA%B0%80%EC%9E%A5%20%EB%A8%BC%20%EB%85%B8%EB%93%9C.mjs)
+
 #### ETC
 
 - [신고 결과 받기](https://github.com/bya2/coding/blob/main/src/programmers/%EC%8B%A0%EA%B3%A0%20%EA%B2%B0%EA%B3%BC%20%EB%B0%9B%EA%B8%B0.mjs)
