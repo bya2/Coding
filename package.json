@@ -1,0 +1,22 @@
+{
+  "name": "coding",
+  "version": "1.0.0",
+  "description": "```bat\r @REM RUN (solution)\r USER > ./run\r ```",
+  "main": "test.js",
+  "scripts": {
+    "test" : "node test.mts",
+    "start": "node src/run.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bya2/coding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bya2/coding/issues"
+  },
+  "homepage": "https://github.com/bya2/coding#readme",
+  "type": "module"
+}
