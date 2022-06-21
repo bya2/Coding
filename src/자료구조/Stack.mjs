@@ -5,7 +5,7 @@ export default class Stack {
     this._stack = _arr ?? [];
   }
 
-  get stack() {
+  get items() {
     return this._stack;
   }
 
@@ -13,8 +13,16 @@ export default class Stack {
     return this._stack.length;
   }
 
-  push(_node) {
-    this._stack.push(_node);
+  get isEmpty() {
+    return this.size === 0;
+  }
+
+  set items(_arr) {
+    this._stack = _arr ?? [];
+  }
+
+  push(_item) {
+    this._stack.push(_item);
   }
 
   pop() {
@@ -23,5 +31,9 @@ export default class Stack {
 
   peek() {
     return this._stack[this.size - 1];
+  }
+
+  print() {
+    console.log(this._stack);
   }
 }

@@ -5,12 +5,20 @@ export default class Queue {
     this._queue = _arr ?? [];
   }
 
-  get queue() {
+  get items() {
     return this._queue;
   }
 
   get size() {
     return this._queue.length;
+  }
+
+  get isEmpty() {
+    return this.size === 0;
+  }
+
+  set items(_arr) {
+    this._queue = _arr ?? [];
   }
 
   enqueue(_item) {
@@ -19,5 +27,9 @@ export default class Queue {
 
   dequeue() {
     return this._queue.shift();
+  }
+
+  print() {
+    console.log(this._queue);
   }
 }
