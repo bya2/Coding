@@ -1,37 +1,5 @@
-import { Queue } from "./List.mjs";
-
-const pseudocodeOfBFS = (_root) => {
-  let queue = new Queue();
-  _root.visited = true;
-  queue.enqueue(_root);
-
-  while (!queue.isEmpty) {
-    let node = queue.dequeue();
-
-    // processing...
-
-    for (let adjNode of node.adjacent) {
-      if (!adjNode.visited) {
-        adjNode.visited = true;
-        queue.enqueue(adjNode);
-      }
-    }
-  }
-};
-
-const pseudocodeOfDFS = (_root) => {
-  if (_root === null) return;
-
-  // processing...
-
-  _root.visited = true;
-
-  for (let adjNode of _root.adjacent) {
-    if (!adjNode.visited) {
-      pseudocodeOfDFS(adjNode);
-    }
-  }
-};
+import { pseudocodeOfBFS } from "./BFS.mjs";
+import { pseudocodeOfDFS } from "./DFS.mjs";
 
 export class Graph {
   _root;
@@ -40,34 +8,36 @@ export class Graph {
     this._root = _root;
   }
 
-  BFS() {
-    let queue = new Queue();
-    this._root.visited = true;
-    queue.enqueue(this._root);
-
-    while (!queue.isEmpty) {
-      let node = queue.dequeue();
-
-      this.visit(node);
-
-      for (let adjNode of node.adjacent) {
-        if (!adjNode.visited) {
-          adjNode.visited = true;
-          queue.enqueue(adjNode);
-        }
-      }
-    }
+  get root() {
+    return this._root;
   }
 
-  DFS() {}
+  set root(_node) {
+    this._root = _node;
+  }
 
-  visit(_node) {}
+  BFS(_cb) {
+    pseudocodeOfBFS(this._root, _cb);
+  }
+
+  DFS(_cb) {
+    pseudocodeOfDFS(this._root, _cb);
+  }
 }
 
-export class Tree extends Graph {
-  inOrder() {}
+export class SparseGraph extends Graph {
+  _adjLists;
 
-  preOrder() {}
+  constructor(_root, _adjLists) {
+    super(_root);
+    this._adjLists = _adjLists;
+  }
 
-  postOrder() {}
+  addEdge(_from, _to) {
+    this._adjLists[_from].push(_to);
+  }
+}
+
+export class DenseGraph extends Graph {
+  _adjMatrix;
 }

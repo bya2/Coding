@@ -1,29 +1,29 @@
 export class Node {
   _data;
-  _marked = false;
 
-  constructor(_data) {
+  constructor(_data, _visited = false) {
     this._data = _data;
+    this._visited = _visited;
   }
 
   get data() {
     return this._data;
   }
 
-  get marked() {
-    return this._marked;
+  get visited() {
+    return this._visited;
   }
 
   set data(_data) {
     this._data = _data;
   }
 
-  set marked(_bool) {
-    this._marked = _bool;
+  set visited(_bool) {
+    this._visited = _bool;
   }
 }
 
-export class GNode extends Node {
+export class GraphNode extends Node {
   _adjacent = [];
 
   constructor(_data, _adjacent = []) {
@@ -40,7 +40,7 @@ export class GNode extends Node {
   }
 }
 
-export class TNode extends Node {
+export class TreeNode extends Node {
   _parent;
   _children = [];
 
@@ -66,7 +66,7 @@ export class TNode extends Node {
   }
 }
 
-export class BTNode extends TNode {
+export class BTNode extends TreeNode {
   get left() {
     return this._children[0];
   }
