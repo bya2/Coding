@@ -26,18 +26,47 @@ export class Graph {
 }
 
 export class SparseGraph extends Graph {
-  _adjLists;
+  _adjListDir;
 
-  constructor(_root, _adjLists) {
+  constructor(_root, _adjListDir = {}) {
     super(_root);
-    this._adjLists = _adjLists;
+    this._adjListDir = _adjListDir;
+  }
+
+  addNode(_node) {
+    this._adjListDir[_node.id] ??= [];
+  }
+
+  hasNode(_node) {
+    this._adjListDir.hasOwnProperty(_node.id);
   }
 
   addEdge(_from, _to) {
-    this._adjLists[_from].push(_to);
+    this._adjListDir[_from.id].push(_to.id);
+  }
+
+  hasEdge(_from, _to) {
+    return this._adjListDir[_from.ud].includes(_to.id);
+  }
+
+  removeEdge(_from, _to) {
+    // No need.
   }
 }
 
 export class DenseGraph extends Graph {
   _adjMatrix;
+
+  constructor(_root, _adjMatrix = []) {
+    super(_root);
+    this._adjMatrix = _adjMatrix;
+  }
+
+  addNode() {
+    this._adjMatrix
+  }
+
+  addEdge() {
+
+  }
 }
