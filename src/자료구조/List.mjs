@@ -13,23 +13,23 @@ export class List {
     return this.size === 0;
   }
 
-  static get items() {
+  get items() {
     return this._items;
   }
 
-  static set items(_items) {
+  set items(_items) {
     this.items = _items;
   }
 
-  static insert(_item, _index) {
+  insert(_item, _index) {
     this._items.splice(_index, 0, _item);
   }
 
-  static replace(_item, _index) {
+  replace(_item, _index) {
     this._items.splice(_index, 1, _item);
   }
 
-  static remove(_item, _index) {
+  remove(_item, _index) {
     this._items.splice(_index, 1);
   }
 
