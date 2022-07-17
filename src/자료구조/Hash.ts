@@ -17,10 +17,16 @@ const addNumberInMap = <K = any>(map: Map<K, number>, key: K, n: number): Map<K,
   return map;
 };
 
-const getDicFromList = <K, V>(): Map<K, V> => {
-  const map = new Map<K, V>();
+const getDicFromList = <K = any, V = any>(list: K[], initialValue: V): Map<K, V> => {
+  return list.reduce((dic, elem) => {
+    dic.set(elem, initialValue);
+    return dic;
+  }, new Map<K, V>());
+};
 
-  
-
-  return map;
-}
+const getDicFromItemList = <K = any, V = any>(list: any[], key: K, initialValue: V): Map<K, V> => {
+  return list.reduce((dic, item) => {
+    dic.set(item[key], initialValue);
+    return dic;
+  }, new Map<K, V>());
+};

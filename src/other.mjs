@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { other_solution, examples__arr } from "./programmers/추석 트래픽.mjs";
+import { other_solution, examples__arr } from "./programmers/짝지어 제거하기.mjs";
 
 (function () {
   console.log("Others:");

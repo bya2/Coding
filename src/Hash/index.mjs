@@ -26,7 +26,7 @@ export const getDicOfSumFromTwoArr = (_keyArr, _valArr) => {
   }
 
   const dic = new Map();
-  const arrLen = _keyArr.length;
+  const arrLen = _keyArr.length;            
 
   for (let i = 0; i < arrLen; ++i) {
     sumValueOfKeyInMap(dic, _keyArr[i], _valArr[i]);

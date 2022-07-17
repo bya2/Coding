@@ -13,7 +13,7 @@ export default class Heap {
     return (_cIdx / 2) >> 0;
   }
 
-  getLastIdx() {
+  getLastIdx() { 
     return this.queue.length - 1;
   }
 
