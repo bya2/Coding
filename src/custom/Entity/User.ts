@@ -1,33 +1,38 @@
 import { Entity } from ".";
 
+interface UserInfo {
+
+}
+
 export default class User extends Entity {
-  _password?: string;
-  _hashed?: string;
-  _nickname?: string;
-  _email?: string;
-  _tel?: string;
+  #password?: string;
+  #hashed?: string;
+  #nickname?: string;
+  #email?: string;
+  #tel?: string;
 
   constructor() {
     super();
-    this._password = "";
-    this._nickname = "";
-    this._email = "";
-    this._tel = "";
+    this.#password = "";
+    this.#hashed = "";
+    this.#nickname = "";
+    this.#email = "";
+    this.#tel = "";
   }
 
   get password() {
-    return this._password;
+    return this.#password;
   }
 
   get email() {
-    return this._email;
+    return this.#email;
   }
 
   get nickname() {
-    return this._nickname;
+    return this.#nickname;
   }
 
   get tel() {
-    return this._tel;
+    return this.#tel;
   }
 }

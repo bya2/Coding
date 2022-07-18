@@ -1,12 +1,8 @@
 import { uuid } from "uuidv4";
 
 export class Entity {
-  protected _id: string;
-  protected _name?: string;
-
-  constructor() {
-    this._id = uuid();
-  }
+  _id: string = uuid();
+  _name?: string;
 
   get id() {
     return this._id;
