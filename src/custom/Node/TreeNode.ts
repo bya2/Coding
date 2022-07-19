@@ -1,7 +1,13 @@
 import Node from ".";
 
-export default class TreeNode<D = any> extends Node<D> {
-  parent: string | TreeNode<D> | null;
+interface TreeNodeInterface<D> {
+  parent: TreeNode<D> | null;
+
+    
+}
+
+export default class TreeNode<D = any> extends Node<D> implements TreeNodeInterface<D> {
+  parent: TreeNode<D> | null;
   #children: TreeNode[];
 
   constructor(data: D, parent: any = null, children = []) {
@@ -21,7 +27,10 @@ export default class TreeNode<D = any> extends Node<D> {
   get depth(): number {
     // 루트에서부터 노드에 도달하기 위한 간선의 수
     let num = 0;
-    let node = this;
+    let node = this.parent;
+
+
+
     while (!node.isRoot()) {
       ++num;
       node = node.parent;
@@ -59,7 +68,7 @@ class Tree<D> {
     }
   }
 
-  traversePreOrder(node: TreeNode<D>, cb: Function) {
+  traversePreOrder(node: TreeNode<D>, cb?: Function) {
 
     if (node) {
       this.mark(node, cb);
