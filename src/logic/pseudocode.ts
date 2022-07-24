@@ -1,4 +1,4 @@
-import { Queue } from "./List";
+import { Queue } from "./list";
 import { noop } from "../misc/util";
 
 export const pseudocodeOfBFS = (root: any, cb?: Function, ...args: any[]) => {
