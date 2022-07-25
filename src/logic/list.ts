@@ -1,6 +1,7 @@
-export class List<V = any> {
-  data: V[];
-  constructor(data: V[]) {
+export class List<E = any> {
+  data: E[];
+
+  constructor(data: E[]) {
     this.data = data;
   }
 
@@ -8,43 +9,67 @@ export class List<V = any> {
     return this.data.length;
   }
 
-  insert(el: V, index: number) {
-    this.data.splice(index, 0, el);
+  isEmpty() {
+    return this.data.length === 0;
   }
 
-  replace(el: V, index: number) {
-    this.data.splice(index, 1, el);
+  insert(element: E, index: number) {
+    this.data.splice(index, 0, element);
+  }
+
+  replace(element: E, index: number) {
+    this.data.splice(index, 1, element);
   }
 
   delete(index: number) {
     this.data.splice(index, 1);
   }
+
+  compare(index1: number, index2: number): boolean {
+    return this.data[index1] < this.data[index2];
+  }
+
+  swap(index1: number, index2: number) {
+    [this.data[index1], this.data[index2]] = [this.data[index2], this.data[index1]];
+  }
+
+  mix(seed: number) {
+    this.data.sort(() => Math.random() - seed);
+  }
+
+  print() {
+    console.log(`DATA:${this.data}\nSIZE:${this.size}`);
+  }
 }
 
-export class Queue<V = any> extends List<V> {
-  get front() {
+export class Queue<E = any> extends List<E> {
+  get front(): E {
     return this.data[0];
   }
 
-  get rear() {
-    return this.data[this.size - 1];
+  get rear(): E {
+    return this.data[this.data.length - 1];
   }
 
-  enqueue(data: V) {
-    this.data.push(data);
+  enqueue(element: E) {
+    this.data.push(element);
   }
 
-  dequeue(): V | null {}
+  dequeue(): E | null {
+    return this.data.shift() || null;
+  }
 }
 
-export class Stack<D = any> extends List<D> {
+export class Stack<E = any> extends List<E> {
   get peek() {
-    return this.data[this.size - 1];
+    return this.data[this.data.length - 1];
   }
 
-  push(data) {
-    super(data);
+  push(element: E) {
+    this.data.push(element);
   }
 
-  pop() {}
+  pop(): E | null {
+    return this.data.pop() || null;
+  }
 }
