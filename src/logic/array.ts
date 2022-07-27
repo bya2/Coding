@@ -22,16 +22,11 @@ export const mix = <E = any>(arr: E[], seed: number) => {
   arr.sort(() => Math.random() - seed);
 };
 
-export const getDirectory = () => {};
-
-export default class CustomArray extends Array {
-  getBigger() {}
-
-  getSmaller() {}
-}
-
 export const getMostNumerous = <E extends string>(arr: E[]) => {
-  return arr.reduce();
+  const dir = arr.reduce((dir, elem) => {
+    
+    return dir;
+  }, {} as { [key: string]: number });
 };
 export const getNumberOfEachElement = <E extends string = any>(arr: E[]): { [key: string]: number } => {
   return arr.reduce((dir, elem) => {
