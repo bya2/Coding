@@ -1,4 +1,29 @@
 export const solution = (id_list, report, k) => {
+  // 유저 목록,
+  // 유저 별 신고 목록,
+  // 이용 정지 기준 횟수
+  // - 반환: 유저 별 신고 처리 결과 메일 받은 횟수
+
+  let reports = [...new Set(report)].map((str) => str.split(" "));
+  let userDir = new Map();
+  let reportDir = new Map();
+
+  for (let [, target] of reports) {
+    reportDir.set(target, reportDir.get(target) + 1 || 1);
+  }
+
+  for (let [reporter, target] of reports) {
+    if (reportDir.get(target) >= k) {
+      userDir.set(reporter, userDir.get(reporter) + 1 || 1);
+    }
+  }
+
+  const result = id_list.map((id) => userDir.get(id) || 0);
+
+  return result;
+};
+
+export const solution2 = (id_list, report, k) => {
   const id_map = id_list.reduce((obj, id) => {
     obj[id] = 0;
     return obj;
@@ -46,7 +71,7 @@ export const other_solution = (id_list, report, k) => {
     }
   }
 
-  const result = id_list.map(id => id_map.get(id) || 0);
+  const result = id_list.map((id) => id_map.get(id) || 0);
   return result;
 };
 
