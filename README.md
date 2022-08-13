@@ -69,6 +69,7 @@ USER > ./all
 - [멀쩡한 사각형](./src/programmers/%EB%A9%80%EC%A9%A1%ED%95%9C%20%EC%82%AC%EA%B0%81%ED%98%95.mjs)
 - [124 나라의 숫자](./src/programmers/124%20%EB%82%98%EB%9D%BC%EC%9D%98%20%EC%88%AB%EC%9E%90.mjs)
 - [추석 트래픽](./src/programmers/%EC%B6%94%EC%84%9D%20%ED%8A%B8%EB%9E%98%ED%94%BD.mjs)
+- [두 개 뽑아서 더하기](./src/programmers/%EB%91%90%20%EA%B0%9C%20%EB%BD%91%EC%95%84%EC%84%9C%20%EB%8D%94%ED%95%98%EA%B8%B0.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
