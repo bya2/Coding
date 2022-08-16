@@ -1,3 +1,22 @@
+export const re_solution = (numbers, target) => {
+  let num;
+
+  const DFS = (level = 0, sum = 0) => {
+    if (level === numbers.length) {
+      if (sum === target) {
+        num += 1;
+      }
+      return;
+    }
+
+    DFS(level + 1, sum + numbers[level]);
+    DFS(level + 1, sum - numbers[level]);
+  };
+
+  DFS();
+  return num;
+};
+
 export const solution = (numbers, target) => {
   let num = 0;
 

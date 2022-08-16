@@ -1,6 +1,32 @@
-// DFS/BFS - 2
-// 컴퓨터의 갯수, 연결에 대한 정보
 export const solution = (n, computers) => {
+  let networks = 0;
+
+  const DFS = (i) => {
+    if (computers[i][i] === 0) {
+      return;
+    }
+    computers[i][i] = 0;
+
+    for (let j = 0; j < n; ++j) {
+      if (computers[i][j]) {
+        DFS(j);
+      }
+    }
+  };
+
+  for (let i = 0; i < n; ++i) {
+    // 컴퓨터마다
+    if (computers[i][i] === 1) {
+      // 방문하지 않았다면,
+      DFS(i);
+      networks++;
+    }
+  }
+
+  return networks;
+};
+
+export const origin = (n, computers) => {
   let nets__num = 0;
   const visited__arr = Array.from({ length: n }, () => false);
 
