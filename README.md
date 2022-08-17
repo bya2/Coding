@@ -74,6 +74,7 @@ BFS는 최단 거리
 - [두 개 뽑아서 더하기](./src/programmers/%EB%91%90%20%EA%B0%9C%20%EB%BD%91%EC%95%84%EC%84%9C%20%EB%8D%94%ED%95%98%EA%B8%B0.mjs)
 - [조이스틱](./src/programmers/%EC%A1%B0%EC%9D%B4%EC%8A%A4%ED%8B%B1.mjs)
 - [게임 맵 최단거리](src/programmers/%EA%B2%8C%EC%9E%84%20%EB%A7%B5%20%EC%B5%9C%EB%8B%A8%EA%B1%B0%EB%A6%AC.mjs)
+- [포켓몬](src/programmers/%ED%8F%AC%EC%BC%93%EB%AA%AC.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
