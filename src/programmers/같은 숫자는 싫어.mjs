@@ -1,4 +1,16 @@
-export const 연속된중복제거 = () => {};
+export const 연속된_중복_제거 = (...args) => {
+  return args.filter((arg, i) => arg !== args[--i]);
+  // return args.filter((arg, i) => {
+  //   console.log(i, args[i]);
+  //   const r = arg !== args[--i];
+  //   console.log(i, args[i], "\n");
+  //   return r;
+  // })
+};
+
+export const other_solution = (arr) => {
+  return 연속된_중복_제거(...arr);
+};
 
 export const solution = (arr) => {
   const len = arr.length;
