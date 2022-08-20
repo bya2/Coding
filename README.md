@@ -36,12 +36,16 @@ USER > ./all
 
 #### DFS / BFS
 
-- [타겟 넘버](https://github.com/bya2/coding/blob/main/src/programmers/%ED%83%80%EA%B2%9F%20%EB%84%98%EB%B2%84.mjs)
-- [네트워크](https://github.com/bya2/coding/blob/main/src/programmers/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC.mjs)
-- [단어 변환](https://github.com/bya2/coding/blob/main/src/programmers/%EB%8B%A8%EC%96%B4%20%EB%B3%80%ED%99%98.mjs)
-- [여행 경로](https://github.com/bya2/coding/blob/main/src/programmers/%EC%97%AC%ED%96%89%20%EA%B2%BD%EB%A1%9C.mjs)
+- [타겟 넘버](src/programmers/%ED%83%80%EA%B2%9F%20%EB%84%98%EB%B2%84.mjs)
+- [네트워크](src/programmers/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC.mjs)
+- [단어 변환](src/programmers/%EB%8B%A8%EC%96%B4%20%EB%B3%80%ED%99%98.mjs)
+- [여행 경로](src/programmers/%EC%97%AC%ED%96%89%20%EA%B2%BD%EB%A1%9C.mjs)
 
 BFS는 최단 거리
+
+#### 완전 탐색
+
+- [최소직사각형](src/programmers/%EC%B5%9C%EC%86%8C%EC%A7%81%EC%82%AC%EA%B0%81%ED%98%95.mjs)
 
 #### Heap
 
