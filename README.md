@@ -31,6 +31,7 @@ USER > ./all
 
 - [기능개발](./src/programmers/Stack/%EA%B8%B0%EB%8A%A5%EA%B0%9C%EB%B0%9C.mjs)
 - [프린터](./src/programmers/Stack/%ED%94%84%EB%A6%B0%ED%84%B0.mjs)
+- [같은 숫자는 싫어](src/programmers/%EA%B0%99%EC%9D%80%20%EC%88%AB%EC%9E%90%EB%8A%94%20%EC%8B%AB%EC%96%B4.mjs)
 
 #### DFS / BFS
 
