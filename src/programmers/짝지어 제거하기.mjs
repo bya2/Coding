@@ -1,67 +1,17 @@
-import CustomString from "../custom/CustomString";
-
-export const extractSpecificRangeOfString = (s, sIdx, eIdx) => {
-  if (typeof s !== "string") {
-    throw new Error();
-  }
-
-  if (s.length === 0 && (sIdx > eIdx || eIdx === -1) && s.length <= sIdx && s.length <= eIdx) {
-    throw new Error();
-  }
-
-  s = s.substring(sIdx, eIdx - sIdx + 1);
-  return s;
-};
-
-export const removeSpecificRangeOfString = (s, sIdx, eIdx) => {
-  if (typeof s !== "string") {
-    throw new Error("no string");
-  }
-
-  const sLen = s.length;
-  if (sLen === 0) throw new Error("");
-
-  s = s.substring(0, sIdx) + s.substring(eIdx + 1);
-  return s;
-};
-
 export const solution = (s) => {
-  let sLen = s.length;
+  let stack = [];
 
-  for (let i = 0; i < sLen; ++i) {
-    if (i + 1 >= sLen) {
-      break;
-    }
-    const currChar = s[i];
-    const nextChar = s[i + 1];
-
-    if (currChar === nextChar) {
-      s = s.substring(0, i) + s.substring(i + 2);
-      i = -1;
-      sLen -= 2;
-      continue;
+  for (let i = 0; i < s.length; ++i) {
+    if (!stack.length || stack[stack.length - 1] !== s[i]) {
+      stack.push(s[i]);
+      console.log(stack, "PUSH");
+    } else {
+      stack.pop();
+      console.log(stack, "POP");
     }
   }
 
-  if (sLen === 0) return 1;
-  else return 0;
-};
-
-export const other_solution = (s) => {
-  let cs = new CustomString(s);
-
-  for (let i = 0; i < cs.length; ++i) {
-    if (cs.length <= i + 1) break;
-
-    if (s[i] === s[i + 1]) {
-      cs.removeSpecificRange(i, i + 1);
-      i = -1;
-      continue;
-    }
-  }
-
-  if (cs.length === 0) return 1;
-  else return 0;
+  return stack.length === 0 ? 1 : 0;
 };
 
 export const examples__arr = [
