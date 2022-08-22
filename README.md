@@ -33,6 +33,7 @@ USER > ./all
 - [프린터](./src/programmers/Stack/%ED%94%84%EB%A6%B0%ED%84%B0.mjs)
 - [같은 숫자는 싫어](src/programmers/%EA%B0%99%EC%9D%80%20%EC%88%AB%EC%9E%90%EB%8A%94%20%EC%8B%AB%EC%96%B4.mjs)
 - [올바른 괄호](src/programmers/%EC%98%AC%EB%B0%94%EB%A5%B8%20%EA%B4%84%ED%98%B8.mjs)
+- [짝지어 제거하기](src/programmers/%EC%A7%9D%EC%A7%80%EC%96%B4%20%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0.mjs)
 
 #### DFS / BFS
 
