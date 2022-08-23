@@ -31,44 +31,103 @@ class ArrayQueue {
   }
 }
 
-// class Node {
-//   data;
-//   _marked = false;
-//   constructor(data) {
-//     this.data = data;
-//   }
-//   get marked() {
-//     return this._marked;
-//   }
-//   mark(cb, ...args) {
-//     this._marked = true;
-//     cb?.(...args);
-//   }
-// }
+export class Node {
+  id;
+  data;
+  depth = 0;
+  isLeaf = false;
+  isMarked = false;
 
-// class SparseGraph {
-//   root;
-//   adjList;
-//   constructor(root, adjList) {
-//     this.root = root;
-//     this.adjList = adjList;
-//   }
-//   BFS() {
-//     let queue = new ArrayQueue();
-//     this.root.marked();
-//     queue.enqueue(this.root);
+  constructor(data) {
+    this.data = data;
+  }
+}
 
-//     while (!queue.isEmpty()) {
-//       let curr = queue.dequeue();
-//       for (let adj of this.adjList[curr.data]) {
-//         if (!adj.marked) {
-//           adj.mark();
-//           queue.enqueue(adj);
-//         }
-//       }
-//     }
-//   }
-// }
+export class GraphNode {
+  _adjacents = new Map();
+
+  get adjacents() {
+    return this._adjacents;
+  }
+
+  addAdjacent(node) {
+    this._adjacents.set(node.id, node);
+  }
+
+  removeAdjacent(node) {
+    this._adjacents.delete(node.id);
+  }
+
+  isAdjacent(node) {
+    return this._adjacents.has(node.id);
+  }
+}
+
+export class SparseGraph {
+  rootNode;
+  _adjacencyList = new Map();
+
+  constructor(root) {
+    this.rootNode = root;
+  }
+
+  get adjacencyList() {
+    return this._adjacencyList;
+  }
+
+  setAdjacencyList(edges) {
+    for (let [nodeId1, nodeId2] of edges) {
+      this._adjacencyList.set(
+        nodeId1,
+        this._adjacencyList.has(nodeId1) ? [...this._adjacencyList.get(nodeId1), nodeId2] : [nodeId2]
+      );
+      this._adjacencyList.set(
+        nodeId2,
+        this._adjacencyList.has(nodeId2) ? [...this._adjacencyList.get(nodeId2), nodeId1] : [nodeId1]
+      );
+    }
+  }
+
+  BFS() {
+    const queue = new ArrayQueue();
+    queue.enqueue(this.rootNode);
+    this.rootNode.isMarked = true;
+
+    let maxDepth = 0;
+    let leafs = [];
+    for (let depth = 0; !queue.isEmpty(); ++depth) {
+      if (queue.isEmpty()) {
+        maxDepth = depth;
+        break;
+      }
+
+      const queueSize = queue.size;
+      for (let i = 0; i < queueSize; ++i) {
+        const currNode = queue.dequeue();
+        currNode.depth = depth;
+
+        if (this._adjacencyList.has(currNode.id)) {
+          for (const adjNode of this._adjacencyList.get(currNode.id)) {
+            if (!adjNode.isMarked) {
+              queue.enqueue(adjNode);
+              adjNode.isMarked = true;
+            }
+          }
+        } else {
+          currNode.isLeaf = true;
+          leafs.push(currNode);
+        }
+      }
+    }
+
+    return [maxDepth, leafs];
+  }
+}
+
+export const other_solution = (n, edges) => {
+  let root = new GraphNode(1);
+  let graph = new SparseGraph(n, root, edges);
+};
 
 export const solution = (n, edges) => {
   let adjList = Array.from({ length: n + 1 }, () => []);
@@ -82,11 +141,14 @@ export const solution = (n, edges) => {
   let marked = [1];
 
   while (!queue.isEmpty()) {
-    const curr = queue.dequeue();
-    for (let adj of adjList[curr]) {
-      if (!marked[adj]) {
-        marked[adj] = marked[curr] + 1;
-        queue.enqueue(adj);
+    const SIZE = queue.size;
+    for (let i = 0; i < SIZE; ++i) {
+      const curr = queue.dequeue();
+      for (let adj of adjList[curr]) {
+        if (!marked[adj]) {
+          marked[adj] = marked[curr] + 1;
+          queue.enqueue(adj);
+        }
       }
     }
   }
