@@ -1,46 +1,35 @@
-class ArrayQueue {
-  data;
-  size;
-  constructor(data = []) {
-    this.data = data;
-    this.size = data.length;
-  }
-  get size() {
-    return this.data.length;
-  }
-  get front() {
-    return this.data[0];
-  }
-  get rear() {
-    return this.data[this.size - 1];
-  }
-  enqueue(element) {
-    if (typeof element !== "undefined") {
-      ++this.size;
-      this.data.push(element);
-    }
-  }
-  dequeue() {
-    if (this.size >= 1) {
-      --this.size;
-      return this.data.shift();
-    }
-  }
-  isEmpty() {
-    return this.data.length === 0;
-  }
-}
-
 export const solution = (n, results) => {
-  let adjList = {};
-  for (let [win, lose] of results) {
-    adjList[win] = adjList[win] ? [...adjList[win], lose] : [lose];
+  // 플로이드-와샬 알고리즘
+  let mat = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));
+  for (let [w, l] of results) {
+    mat[w - 1][l - 1] = 1;
+    mat[l - 1][w - 1] = -1;
   }
-  let values = Object.values(adjList)
-  console.log(values);
 
-  // const queue = new ArrayQueue();
-  // queue.enqueue()
+  for (let mid = 0; mid < n; ++mid) {
+    for (let i = 0; i < n; ++i) {
+      for (let j = 0; j < n; ++j) {
+        if (mat[i][mid] === 1 && mat[mid][j] === 1) mat[i][j] = 1;
+        if (mat[i][mid] === -1 && mat[mid][j] === -1) mat[i][j] = -1;
+      }
+    }
+  }
+
+  let answer = 0;
+  for (let i = 0; i < n; ++i) {
+    let acc = true;
+    for (let j = 0; j < n; ++j) {
+      if (i !== j && mat[i][j] === 0) {
+        acc = false;
+      }
+    }
+
+    if (acc) {
+      ++answer;
+    }
+  }
+
+  return answer;
 };
 
 export const examples__arr = [
