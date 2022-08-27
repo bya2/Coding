@@ -1,35 +1,61 @@
+export const floyd = (n, adjMat) => {
+  // '경유'라는 개념
+  const dist = Array.from({ length: n }, () => Array.from({ length: n }, () => Infinity));
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (i === j) {
+        dist[i][j] === 0;
+      } else if (adjMat[i][j]) {
+        dist[i][j] = adjMat[i][j];
+      }
+    }
+  }
+
+  for (let mid = 0; mid < n; mid++) {
+    for (let from = 0; from < n; from++) {
+      for (let to = 0; to < n; to++) {
+        dist[from][to] = Math.min(dist[from][to], dist[from][mid] + dist[mid][to]);
+      }
+    }
+  }
+
+  return dist;
+};
+
 export const solution = (n, results) => {
   // 플로이드-와샬 알고리즘
-  let mat = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));
+  let adjMat = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));
   for (let [w, l] of results) {
-    mat[w - 1][l - 1] = 1;
-    mat[l - 1][w - 1] = -1;
+    adjMat[w - 1][l - 1] = 1;
+    adjMat[l - 1][w - 1] = -1;
   }
 
   for (let mid = 0; mid < n; ++mid) {
-    for (let i = 0; i < n; ++i) {
-      for (let j = 0; j < n; ++j) {
-        if (mat[i][mid] === 1 && mat[mid][j] === 1) mat[i][j] = 1;
-        if (mat[i][mid] === -1 && mat[mid][j] === -1) mat[i][j] = -1;
+    for (let from = 0; from < n; ++from) {
+      for (let to = 0; to < n; ++to) {
+        if (adjMat[from][mid] === 1 && adjMat[mid][to] === 1) adjMat[from][to] = 1;
+        if (adjMat[from][mid] === -1 && adjMat[mid][to] === -1) adjMat[from][to] = -1;
       }
     }
   }
 
-  let answer = 0;
+  let count = 0;
+  let hasResult;
   for (let i = 0; i < n; ++i) {
-    let acc = true;
+    hasResult = true;
     for (let j = 0; j < n; ++j) {
-      if (i !== j && mat[i][j] === 0) {
-        acc = false;
+      if (i !== j && adjMat[i][j] === 0) {
+        hasResult = false;
       }
     }
 
-    if (acc) {
-      ++answer;
+    if (hasResult) {
+      ++count;
     }
   }
 
-  return answer;
+  return count;
 };
 
 export const examples__arr = [
