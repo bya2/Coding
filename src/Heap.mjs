@@ -16,6 +16,14 @@ class Heap {
     this.root = this._stack.data[indexOfRoot];
   }
 
+  get left() {
+    codin
+  }
+
+  get right() {
+
+  }
+
   _getIndexOfParent(index) {
     return Math.floor(index / 2);
   }
@@ -33,15 +41,11 @@ class Heap {
 }
 
 export class MaxHeap extends Heap {
-  heapifyUp() {
+  _heapify() {
     const { _stack } = this;
 
     let index = _stack.size - 1;
     
-  }
-
-  _sort(i, j) {
-    const { _stack } = this;
   }
 
   insert(data) {
@@ -56,4 +60,12 @@ export class MaxHeap extends Heap {
   }
 
   pop() {}
+}
+
+export class MinHeap extends Heap {
+  _heapify() {
+
+  }
+
+
 }
