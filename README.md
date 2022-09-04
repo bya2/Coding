@@ -85,6 +85,7 @@ BFS는 최단 거리
 - [조이스틱](./src/programmers/%EC%A1%B0%EC%9D%B4%EC%8A%A4%ED%8B%B1.mjs)
 - [게임 맵 최단거리](src/programmers/%EA%B2%8C%EC%9E%84%20%EB%A7%B5%20%EC%B5%9C%EB%8B%A8%EA%B1%B0%EB%A6%AC.mjs)
 - [두 큐 합 같게 만들기](src/programmers/%EB%91%90%20%ED%81%90%20%ED%95%A9%20%EA%B0%99%EA%B2%8C%20%EB%A7%8C%EB%93%A4%EA%B8%B0.mjs)
+- [행렬 테두리 회전하기](src/programmers/%ED%96%89%EB%A0%AC%20%ED%85%8C%EB%91%90%EB%A6%AC%20%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0.mjs)
 
 ## [Hash](https://github.com/bya2/coding/blob/main/src/Hash/index.mjs)
 
