@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/행렬 테두리 회전하기.mjs";
+import { solution, examples__arr } from "./programmers/연습문제/이진 변환 반복하기.mjs";
 
 (function () {
   console.log("Solve:");

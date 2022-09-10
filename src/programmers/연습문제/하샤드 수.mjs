@@ -6,3 +6,4 @@ export const solution = (x) => {
 
   return x % sum === 0;
 };
+``

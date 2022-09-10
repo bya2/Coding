@@ -1,5 +1,5 @@
 export const solution = (n) => {
-  return (n + "").split("").reduce((a, b) => a + b, 0);
+  return (n + "").split("").reduce((a, b) => (a * 1) + (b * 1), 0);
 };
 
 export const examples__arr = [
