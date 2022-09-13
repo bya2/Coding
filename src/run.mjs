@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/연습문제/이진 변환 반복하기.mjs";
+import { solution, examples__arr } from "./programmers/시저 암호.mjs";
 
 (function () {
   console.log("Solve:");

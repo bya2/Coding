@@ -1,13 +1,47 @@
+export class NumberWithBinary {
+  // 이진수에서 1의 개수
+  static numberOfBinaryOne(number) {
+    return number.toString(2).match(/1/g).length;
+  }
+
+  // 이진수에서 1의 개수가 같은 다음 큰 수
+  static nextBigNumberInSameOnes(number) {
+    let shiftCount = 0,
+      currOnes = 0;
+    for (; !(number & 1); ++shiftCount) {
+      number = number >> 1;
+    }
+    for (; number & 1; ++shiftCount, ++currOnes) {
+      number = number >> 1;
+    }
+    for (currOnes--, number++; shiftCount !== currOnes; --shiftCount) {
+      number = number << 1;
+    }
+    for (; shiftCount; shiftCount--, number++) {
+      number = number << 1;
+    }
+    return number;
+  }
+}
+
 export class CustomNumber {
-  sumBetweenTwoIntegers() {
+  // 1부터 n까지의 합
+  static GaussFormula(n, cost = 1) {
+    // 가우스의 공식: 1~n의 합: n(n+1)/2
+    return (cost * n * (n + 1)) / 2;
+  }
+
+  // 두 숫자 사이의 숫자들의 합
+  static sumBetweenTwoIntegers(a, b) {
     return ((a + b) * (Math.abs(a - b) + 1)) / 2;
   }
 
-  // 약수
-  isOddNumberOfDivisors(n) {
+  // 약수 갯수가 홀수인가 짝수인가
+  static isOddNumberOfDivisors(n) {
     return Number.isInteger(Math.sqrt(n));
   }
 
+  // 약수 리스트
   getListOfDivisors(n) {
     const HALF = n / 2;
     const list = [];
