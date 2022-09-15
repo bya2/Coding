@@ -25,6 +25,21 @@ export class NumberWithBinary {
 }
 
 export class CustomNumber {
+  // 합이 s고 곱이 최대가 되는 원소의 집합 getter
+  setOfMaxMultiForSum = (numberOf, sum) => {
+    const d = (sum / numberOf) >> 0;
+    if (!d) return [-1];
+
+    const rest = sum % numberOf;
+    if (sum !== 1 && rest === 0) return Array.from({ length: numberOf }, () => d);
+
+    const needs = Array(numberOf).fill(d);
+    for (let i = 0, len = needs.length; i < rest; ++i) {
+      ++needs[len - 1 - i];
+    }
+    return needs;
+  };
+
   // 1부터 n까지의 합
   static GaussFormula(n, cost = 1) {
     // 가우스의 공식: 1~n의 합: n(n+1)/2
