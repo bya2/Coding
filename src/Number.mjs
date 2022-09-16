@@ -1,4 +1,13 @@
 export class NumberWithBinary {
+  static 토너먼트에서만나는라운드(n, a, b) {
+    let i;
+    for (i = 0; a !== b; ++i) {
+      a = Math.ceil(a / 2);
+      b = Math.ceil(b / 2);
+    }
+    return i;
+  }
+
   // 이진수에서 1의 개수
   static numberOfBinaryOne(number) {
     return number.toString(2).match(/1/g).length;
@@ -71,7 +80,7 @@ export class CustomNumber {
   }
 
   유클리드호제법GCD(n1, n2) {
-    return n1 % n2 === 0 ? b : this.유클리드호제법GCD(n2, n1 % n2);
+    return n1 % n2 === 0 ? n2 : this.유클리드호제법GCD(n2, n1 % n2);
   }
 
   유클리드호제법LCM(n1, n2) {
@@ -84,7 +93,9 @@ export class CustomNumber {
     return [gcd(x, y), lcm(x, y)];
   }
 
-  GCD(...numbers) {}
+  GCD(...numbers) {
+    return numbers.reduce((a, b) => this.유클리드호제법LCM(a, b));
+  }
 
   getGCD(a, b) {
     let gcd = 1;
