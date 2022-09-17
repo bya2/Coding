@@ -33,6 +33,39 @@ export class NumberWithBinary {
   }
 }
 
+export class DPNumber {
+  static dp_1씩더하고2를곱할때_더하기최소값(n) {
+    let jump = 0;
+
+    while (n > 0) {
+      if (n % 2 === 0) n >>= 1;
+      else {
+        --n;
+        ++jump;
+      }
+    }
+
+    return jump;
+  }
+
+  static dp_1씩더하고2를곱할때_더하기최소값2(n) {
+    // 이진수에서 0을 제외하고 남은 문자열의 길이
+    return n.toString(2).replace(/0/g, "").length;
+  }
+
+  static dp_1씩더하고2를곱할때_더하기최소값3(n) {
+    // n이 2의 배수가 될 때까지 n과 n-1을 비트합 연산
+    let jump = 0;
+
+    while (n > 0) {
+      n &= n - 1;
+      ++jump;
+    }
+
+    return jump;
+  }
+}
+
 export class CustomNumber {
   // 합이 s고 곱이 최대가 되는 원소의 집합 getter
   setOfMaxMultiForSum = (numberOf, sum) => {
