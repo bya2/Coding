@@ -50,6 +50,14 @@ export class NumberArrayList extends ArrayList {
   sortDesc() {
     this.data.sort((a, b) => b - a);
   }
+
+  getHIndex() {
+    const { data, sortDesc } = this;
+    sortDesc();
+    let i;
+    for (i = 0; i + 1 <= data[i]; ++i) {}
+    return i;
+  }
 }
 
 export class ArrayQueue extends ArrayList {

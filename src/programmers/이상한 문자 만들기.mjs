@@ -7,5 +7,5 @@ export const solution = (s = "") => {
         .map((c, i) => (i % 2 === 0 ? c.toUpperCase() : c.toLowerCase()))
         .join("")
     )
-    .join("");
+    .join(" ");
 };
