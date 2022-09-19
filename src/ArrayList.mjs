@@ -1,3 +1,5 @@
+import { NumberArraySort } from "./Sort.mjs";
+
 export class ArrayList {
   data;
   _size;
@@ -11,8 +13,33 @@ export class ArrayList {
     return this._size;
   }
 
+  push(element) {
+    if (typeof element !== "undefined") {
+      ++this._size;
+      this.data.push(element);
+    }
+  }
+
+  shift() {
+    if (this._size >= 1) {
+      --this._size;
+      return this.data.shift();
+    }
+  }
+
+  pop() {
+    if (this._size >= 1) {
+      --this._size;
+      return this.data.pop();
+    }
+  }
+
   isEmpty() {
     return this._size === 0;
+  }
+
+  hasAt(index) {
+    return typeof this.data[index] !== "undefined";
   }
 
   replaceAt(index, element) {
@@ -20,45 +47,59 @@ export class ArrayList {
   }
 
   insertAt(index, element) {
-    this.data.splice(index, 1, element);
+    if (index >= 0) {
+      this.data.splice(index, 1, element);
+      ++this._size;
+    }
   }
 
   deleteAt(index, count = 1) {
-    this.data.splice(index, count);
+    if (index >= 0) {
+      this.data.splice(index, count);
+      --this._size;
+    }
   }
 
-  swap(i, j) {
+  swap(index1, index2) {
     const { data } = this;
-    [data[i], data[j]] = [data[j], data[i]];
+    [this.data[index1], this.data[index2]] = [this.data[index2], this.data[index1]];
   }
 
-  compare(i, j) {
+  compare(index1, index2) {
     const { data } = this;
-    return data[i] < data[j];
+    return data[index1] < data[index2];
   }
 }
 
-export class NumberArrayList extends ArrayList {
+export class PrimitiveArrayList extends ArrayList {
+  has(value) {
+    return this.data.includes(value);
+  }
+}
+
+export class NumberArrayList extends PrimitiveArrayList {
   sum() {
     return this.data.reduce((a, b) => a + b, 0);
   }
 
-  sortAsc() {
-    this.data.sort((a, b) => a - b);
+  sortInAsc() {
+    NumberArraySort.inAsc(this.data);
   }
 
-  sortDesc() {
-    this.data.sort((a, b) => b - a);
+  sortInDesc() {
+    NumberArraySort.inDesc(this.data);
   }
 
   getHIndex() {
-    const { data, sortDesc } = this;
-    sortDesc();
+    const { data, sortInDesc } = this;
+    sortInDesc();
     let i;
     for (i = 0; i + 1 <= data[i]; ++i) {}
     return i;
   }
 }
+
+export class StringArrayList extends PrimitiveArrayList {}
 
 export class ArrayQueue extends ArrayList {
   get front() {
