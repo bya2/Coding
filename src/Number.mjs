@@ -1,3 +1,7 @@
+export class PrimeNumber {
+  
+}
+
 export class NumberWithBinary {
   static 토너먼트에서만나는라운드(n, a, b) {
     let i;

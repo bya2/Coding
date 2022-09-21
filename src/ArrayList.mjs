@@ -97,6 +97,14 @@ export class NumberArrayList extends PrimitiveArrayList {
     for (i = 0; i + 1 <= data[i]; ++i) {}
     return i;
   }
+
+  static N제곱배열자르기(n, posX, posY) {
+    const arr = [];
+    for (let i = posX; i <= posY; ++i) {
+      arr.push(Math.max(i % n, (i / n) >> 0) + 1);
+    }
+    return arr;
+  }
 }
 
 export class StringArrayList extends PrimitiveArrayList {}
