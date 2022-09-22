@@ -1,5 +1,17 @@
-export class PrimeNumber {
-  
+export class N extends Number {
+  // 이진수
+  getNumberOfBinaryOnes() {
+    return this.toString(2).match(/1/g).length;
+  }
+
+  getNextBigNumberInSameOnes() {
+
+  }
+
+  // 공식
+  static sum_GaussFormula(n, cost) {
+    return (cost * n * (n + 1)) / 2;
+  }
 }
 
 export class NumberWithBinary {
@@ -69,6 +81,8 @@ export class DPNumber {
     return jump;
   }
 }
+
+
 
 export class CustomNumber {
   // 합이 s고 곱이 최대가 되는 원소의 집합 getter
