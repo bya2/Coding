@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/[1차] 뉴스 클러스터링.mjs";
+import { solution, examples__arr } from "./programmers/주차 요금 계산.mjs";
 
 (function () {
   console.log("Solve:");

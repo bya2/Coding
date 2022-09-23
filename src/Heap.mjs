@@ -1,4 +1,5 @@
 import { ArrayList } from "./ArrayList.mjs";
+import { NArr } from "./Array.mjs";
 
 const ERR_MSG__HEAP__ROOT_INDEX = "It is less than 1 and cannot be an index.";
 
@@ -7,7 +8,7 @@ export default class Heap {
   _heap;
   _indexOfRoot;
 
-  constructor(compareFunction, indexOfRoot = 1, arrayData = [null]) {
+  constructor(compareFunction, indexOfRoot = 1, arrayData) {
     try {
       if (indexOfRoot < 1) throw new Error(ERR_MSG__HEAP__ROOT_INDEX);
     } catch (err) {
@@ -16,7 +17,8 @@ export default class Heap {
     }
 
     indexOfRoot >>= 0;
-    this._heap = new ArrayList(arrayData ?? Array.from({ length: indexOfRoot }, () => null));
+    this._heap = arrayData ? new NArr(...arrayData) : NArr.from({ length: indexOfRoot }, () => null);
+    // this._heap = new NArr(arrayData ?? Array.from({ length: indexOfRoot }, () => null));
     this._indexOfRoot = indexOfRoot;
     if (typeof compareFunction !== "undefined") {
       this._compare = compareFunction;

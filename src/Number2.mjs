@@ -1,4 +1,13 @@
 export default class N extends Number {
+  // 질문
+  isBiggerThan(n) {
+    return this > n;
+  }
+
+  isSmallerThan(n) {
+    return this < n;
+  }
+
   // 소수
   static isPrimeNumber(n) {
     for (let i = 3, len = Math.sqrt(n); i <= len; i += 2) {
@@ -16,7 +25,7 @@ export default class N extends Number {
     return set;
   }
 
-  static numberOfPrimeNumber(from, to) {
+  static ofPrimeNumbers(from, to) {
     let count = from <= 2 ? 1 : 0;
     for (let i = from <= 3 ? 3 : from; i <= to; i += 2) {
       this.isPrimeNumber(i) && ++count;
@@ -60,8 +69,8 @@ export default class N extends Number {
     return (cost * number * (number + 1)) / 2;
   }
 
-  // 같은 합, 최대 곱이 되는 집합
-  static setOf(numberOfNumbers, sumOfNumbers) {
+  // 같은 개수, 같은 합, 최대 곱이 되는 집합
+  static getMaximumBySameNumberAndEqualSum(numberOfNumbers, sumOfNumbers) {
     const remainder = (sumOfNumbers / numberOfNumbers) >> 0;
     if (!remainder) return [-1];
 
@@ -73,5 +82,42 @@ export default class N extends Number {
       ++needs[len - 1 - i];
     }
     return needs;
+  }
+
+  // 2의 배수
+  // 0에서 1더하기, 2곱하기로 n에 도달
+  static numberOfOnesToAddUpTo(n) {
+    let jump = 0;
+
+    while (n > 0) {
+      n &= n - 1;
+      ++jump;
+    }
+
+    return jump;
+  }
+
+  // 이진수
+  // 이진수에서 1의 갯수가 같은 다음 큰 숫자
+  getNextBigNumberSameNumberOfOneInBinary(n) {
+    let countOfShift = 0,
+      numberOfOnes = 0;
+    for (; !(n & 1); ++countOfShift) {
+      n = n >> 1;
+    }
+    for (; n & 1; ++countOfShift, ++numberOfOnes) {
+      n = n >> 1;
+    }
+    for (numberOfOnes--, n++; countOfShift !== numberOfOnes; --countOfShift) {
+      n = n << 1;
+    }
+    for (; countOfShift; countOfShift--, n++) {
+      n = n << 1;
+    }
+    return n;
+  }
+
+  static numberOfOnesInBinary(n) {
+    return n.toString(2).replace(/0/g, "").length;
   }
 }

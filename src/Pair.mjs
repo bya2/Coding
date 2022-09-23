@@ -7,6 +7,7 @@ export class Pair {
     this.data = data;
   }
 
+  // 괄호 회전
   isValid(list = []) {
     const { data: pairs } = this;
 
