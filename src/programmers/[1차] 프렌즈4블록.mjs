@@ -13,8 +13,6 @@ export const solution = (h, w, arr = [""]) => {
     }
 
     if (founded.length === 0) {
-      console.log([].concat(...board));
-      console.log(board);
       return [].concat(...board).filter((v) => !v).length;
     }
 
@@ -26,13 +24,10 @@ export const solution = (h, w, arr = [""]) => {
       }
     }
 
-    console.log(board);
-
     for (let row = h - 1; row > 0; --row) {
       if (!board[row].some((v) => !v)) continue;
       for (let col = 0; col < w; ++col) {
         for (let k = row - 1; k >= 0 && !board[row][col]; --k) {
-          console.log(row, k, col, board[k][col]);
           if (board[k][col]) {
             board[row][col] = board[k][col];
             board[k][col] = null;
