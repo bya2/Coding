@@ -1,4 +1,4 @@
-export class Str extends String {
+export default class S extends String {
   // 질문
   static isLowerCaseCode(code) {
     return code >= 97 && code <= 122;
@@ -20,6 +20,10 @@ export class Str extends String {
     return words.join(" ");
   }
 
+  convertTuple() {
+    return this.match(/(\d+,)*\d+/g).map((s) => s.split(",").map((n) => +n));
+  }
+
   getCenter() {
     return this.substring(Math.ceil(this.length / 2) - 1, this.length % 2 === 0 ? 2 : 1);
   }
@@ -34,16 +38,5 @@ export class Str extends String {
 
   isOddNumberOfDivisors(n) {
     return Number.isInteger(Math.sqrt(n));
-  }
-}
-
-export class ASCIICode extends Number {
-  // 질문
-  isUpperCaseCode() {
-    return this >= 65 && this <= 90;
-  }
-
-  isLowerCaseCode() {
-    return this >= 97 && this <= 122;
   }
 }

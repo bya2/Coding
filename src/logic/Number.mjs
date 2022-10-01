@@ -1,5 +1,9 @@
 export default class N extends Number {
   // 질문
+  isEqualTo(n) {
+    return this === n;
+  }
+
   isBiggerThan(n) {
     return this > n;
   }
