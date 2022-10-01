@@ -1,4 +1,4 @@
-import ArrStack from "../logic/ArrayStack.mjs";
+import ArrStack from "../../logic/ArrayStack.mjs";
 export const solution = (s = "") => {
   function solution(dartResult = "") {
     const bonusMap = [``, `S`, `D`, `T`];

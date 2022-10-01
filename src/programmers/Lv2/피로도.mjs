@@ -1,4 +1,4 @@
-import AdjacencyListGraph, { Node } from "../logic/AdjacencyListGraph.mjs";
+import AdjacencyListGraph, { Node } from "../../logic/AdjacencyListGraph.mjs";
 
 export const solution = (k, dungeons) => {
   const graph = new AdjacencyListGraph();
