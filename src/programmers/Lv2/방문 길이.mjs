@@ -1,4 +1,11 @@
+import Coord2D from "../../logic/Coordinate2D.mjs";
+
 export const solution = (dirs = "") => {
+  dirs = dirs.split("");
+  return new Coord2D({ limit: 5 }).getPaths(dirs).size / 2;
+};
+
+export const solution2 = (dirs = "") => {
   const move = {
     U: [0, 1],
     D: [0, -1],
@@ -6,7 +13,7 @@ export const solution = (dirs = "") => {
     L: [-1, 0],
   };
 
-  const dirs = dirs.split("");
+  dirs = dirs.split("");
   let curr = [0, 0];
   let set = new Set();
 
