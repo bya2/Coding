@@ -1,4 +1,9 @@
-export const solution = (word = "") => {
+import Dict from "../../logic/Dictionary.mjs";
+
+export const solution = (word = "", maxLenOfStr = 5) => {
+  const dict = new Dict(["A", "E", "I", "O", "U"]);
+  return dict.indexOf(word);
+
   const obj = {
     A: 0,
     E: 1,
@@ -7,11 +12,14 @@ export const solution = (word = "") => {
     U: 4,
   };
 
-  const arr = [1, 1, 1, 1, 1].reduce((arr, t, i) => [...arr, arr[i - 1] * 5 + 1], []);
-  console.log(arr);
-
   const plus = [781, 156, 31, 6, 1];
   return word.split("").reduce((a, b, i) => a + obj[b] * plus[i] + 1, 0);
+};
+
+const a = () => {
+  const list = [1];
+  for (let i = 0; i < 5; ++i) list.push(list[i] * 5 + 1);
+  return list;
 };
 
 export const fail_solution = (word = "") => {

@@ -1,7 +1,20 @@
-import { findOneInArrUsingMap } from "../../Hash/index.mjs";
-import { getDicOfNumberFromArr } from "../../Hash/index.mjs";
+import Hash from "../../logic/Hash.mjs";
 
-export const solution = (participant, completion) => {
+export const solution = (participant = [""], completion = [""]) =>
+  participant.find(
+    (p) => !completion[p]--,
+    completion.map((c) => (completion[c] = (completion[c] | 0) + 1))
+  );
+
+export const solution3 = (participant, completion) => {
+  const dict = Hash.fromArray(completion);
+  return participant.find((s) => {
+    if (dict.get(s)) dict.set(s, dict.get(s) - 1);
+    else return true;
+  });
+};
+
+export const solution2 = (participant, completion) => {
   const completionDic = getDicOfNumberFromArr(completion);
   const incompletion = findOneInArrUsingMap(participant, completionDic);
   return incompletion;
