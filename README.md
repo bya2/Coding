@@ -42,6 +42,8 @@ USER > cmd/all
 - [Entity](./src/logic/Entity.mjs)
 
 - [Map](./src/logic/Map.mjs)
+- [Hash](./src/logic/Hash.mjs)
+- [Dictionary](./src/logic/Dictionary.mjs)
 - [AdjacencyListGraph](./src/logic/AdjacencyListGraph.mjs)
 
 - [Tuple](./src/logic/Tuple.mjs)
