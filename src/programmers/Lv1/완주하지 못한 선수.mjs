@@ -1,13 +1,14 @@
-import Hash from "../../logic/Hash.mjs";
+import NMap from "../../logic/NumberMap.mjs";
 
-export const solution = (participant = [""], completion = [""]) =>
-  participant.find(
+export const solution = (participant = [""], completion = [""]) => {
+  return participant.find(
     (p) => !completion[p]--,
     completion.map((c) => (completion[c] = (completion[c] | 0) + 1))
   );
+};
 
 export const solution3 = (participant, completion) => {
-  const dict = Hash.fromArray(completion);
+  const dict = NMap.from(completion);
   return participant.find((s) => {
     if (dict.get(s)) dict.set(s, dict.get(s) - 1);
     else return true;

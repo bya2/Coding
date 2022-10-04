@@ -1,7 +1,13 @@
-import { getNumOfAllCasesFromMap } from "../../Cases/index.mjs";
-import { getDicOfNumberFromMapLikeArr } from "../../Hash/index.mjs";
+import { NMap } from "../../logic/Map.mjs";
 
-export const solution = (clothes) => {
+export const solution = (clothes = [[""]]) => {
+  const map = new NMap();
+  for (let [, kind] of clothes) map.increase(kind);
+  console.log(map);
+  return [...map.values()].reduce((a, b) => a * (b + 1), 1) - 1;
+};
+
+export const solution2 = (clothes) => {
   const typeDir = getDicOfNumberFromMapLikeArr(clothes, 1);
   const cases = getNumOfAllCasesFromMap(typeDir);
   return cases;

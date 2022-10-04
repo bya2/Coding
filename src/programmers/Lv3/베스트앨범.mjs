@@ -1,6 +1,33 @@
-import { sumValueOfKeyInMap } from "../../Hash/index.mjs";
+import { NMap } from "../../logic/Map.mjs";
 
 export const solution = (genres, plays) => {
+  const albums = [];
+  const mapOfSum = new NMap();
+  const mapOfDup = new NMap();
+  for (let i = 0, len = genres.length; i < len; ++i) {
+    albums.push({
+      no: i,
+      genre: genres[i],
+      play: plays[i],
+    });
+
+    mapOfSum.increase(albums[i].genre, albums[i].play);
+  }
+  return albums
+    .sort((a, b) => {
+      if (a.genre !== b.genre) return mapOfSum.get(b.genre) - mapOfSum.get(a.genre);
+      if (a.play !== b.play) return b.play - a.play;
+      return a.no - b.no;
+    })
+    .filter((album) => {
+      if (mapOfDup.get(album.genre) >= 2) return false;
+      mapOfDup.increase(album.genre);
+      return true;
+    })
+    .map((album) => album.no);
+};
+
+export const solution2 = (genres, plays) => {
   let albumList = [];
   const dicOfSum = new Map();
   const dicOfDup = new Map();

@@ -63,18 +63,19 @@ export default class N extends Number {
     return numbers.reduce((n1, n2) => this.getGCD(n1, n2));
   }
 
-  // 숫자 사이의 합
+  // 합
+  // - 숫자 사이의 합
   static sumBetween(integer1, integer2) {
     return ((integer1 + integer2) * (Math.abs(integer1 - integer2) + 1)) / 2;
   }
 
-  // 1부터 n까지의 합 (가우스의 공식)
+  // - 1부터 n까지의 합 (가우스의 공식)
   static sumUpTo(number, cost = 1) {
     return (cost * number * (number + 1)) / 2;
   }
 
   // 같은 개수, 같은 합, 최대 곱이 되는 집합
-  static getMaximumBySameNumberAndEqualSum(numberOfNumbers, sumOfNumbers) {
+  static maximumBySameNumberAndEqualSum(numberOfNumbers, sumOfNumbers) {
     const remainder = (sumOfNumbers / numberOfNumbers) >> 0;
     if (!remainder) return [-1];
 
@@ -103,7 +104,7 @@ export default class N extends Number {
 
   // 이진수
   // 이진수에서 1의 갯수가 같은 다음 큰 숫자
-  getNextBigNumberSameNumberOfOneInBinary(n) {
+  static nextBigNumberSameNumberOfOneInBinary(n) {
     let countOfShift = 0,
       numberOfOnes = 0;
     for (; !(n & 1); ++countOfShift) {

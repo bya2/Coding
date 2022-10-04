@@ -3,6 +3,11 @@ import Arr from "./Array.mjs";
 export default class NArr extends Arr {
   // 질문
 
+  // 경우의 수
+  numberOfCases() {
+    return this.reduce((acc, el) => acc * (el + 1), 1);
+  }
+
   // 행과 열 중 더 큰 인덱스의 값을 가지는 행렬에서 index1부터 index2까지 자르기 (cost부터 시작하는 인덱스)
   sliceFromSerializedMatrix(n, index1, index2, cost = 1) {
     for (let i = index1; i <= index2; ++i) {
@@ -38,11 +43,11 @@ export default class NArr extends Arr {
 
   // 계산
   getSum() {
-    return this.reduce((a, b) => a + b, 0);
+    return this.reduce((acc, el) => acc + el, 0);
   }
 
   getSumOfSquares() {
-    return this.reduce((a, b) => a + Math.pow(b, 2), 0);
+    return this.reduce((acc, el) => acc + Math.pow(el, 2), 0);
   }
 
   getAvg() {
