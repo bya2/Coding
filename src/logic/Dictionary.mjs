@@ -35,3 +35,5 @@ export default class Dict extends Map {
     return costList;
   }
 }
+
+[...word].reduce((acc, curr, i) => acc + "AEIOU".indexOf(curr) * ~~(781 / 5 ** i) + 1, 0);

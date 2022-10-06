@@ -1,4 +1,4 @@
-export default class ASCIICode extends Number {
+export default class ASCII extends Number {
   // 질문
   isUpperCaseCode() {
     return this >= 65 && this <= 90;

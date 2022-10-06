@@ -1,19 +1,12 @@
 import Dict from "../../logic/Dictionary.mjs";
 
-export const solution = (word = "", maxLenOfStr = 5) => {
+export const solution = (word) => {
+  return [...word].reduce((acc, curr, i) => acc + "AEIOU".indexOf(curr) * ~~(781 / 5 ** i) + 1, 0);
+};
+
+export const solution2 = (word = "") => {
   const dict = new Dict(["A", "E", "I", "O", "U"]);
   return dict.indexOf(word);
-
-  const obj = {
-    A: 0,
-    E: 1,
-    I: 2,
-    O: 3,
-    U: 4,
-  };
-
-  const plus = [781, 156, 31, 6, 1];
-  return word.split("").reduce((a, b, i) => a + obj[b] * plus[i] + 1, 0);
 };
 
 const a = () => {

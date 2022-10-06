@@ -1,13 +1,4 @@
 export default class S extends String {
-  // 질문
-  static isLowerCaseCode(code) {
-    return code >= 97 && code <= 122;
-  }
-
-  static isUpperCaseCode(code) {
-    return code >= 65 && code <= 90;
-  }
-
   // 변환
   // - 앞문자가 대문자
   static convertCapitalSentence(s = "") {
