@@ -88,41 +88,4 @@ export default class N extends Number {
     }
     return needs;
   }
-
-  // 2의 배수
-  // 0에서 1더하기, 2곱하기로 n에 도달
-  static numberOfOnesToAddUpTo(n) {
-    let jump = 0;
-
-    while (n > 0) {
-      n &= n - 1;
-      ++jump;
-    }
-
-    return jump;
-  }
-
-  // 이진수
-  // 이진수에서 1의 갯수가 같은 다음 큰 숫자
-  static nextBigNumberSameNumberOfOneInBinary(n) {
-    let countOfShift = 0,
-      numberOfOnes = 0;
-    for (; !(n & 1); ++countOfShift) {
-      n = n >> 1;
-    }
-    for (; n & 1; ++countOfShift, ++numberOfOnes) {
-      n = n >> 1;
-    }
-    for (numberOfOnes--, n++; countOfShift !== numberOfOnes; --countOfShift) {
-      n = n << 1;
-    }
-    for (; countOfShift; countOfShift--, n++) {
-      n = n << 1;
-    }
-    return n;
-  }
-
-  static numberOfOnesInBinary(n) {
-    return n.toString(2).replace(/0/g, "").length;
-  }
 }

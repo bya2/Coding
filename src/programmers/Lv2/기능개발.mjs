@@ -1,4 +1,31 @@
+Array.prototype.clear = function () {
+  this.length = 0;
+};
+
+Array.prototype.getDeployCounts = function (list) {
+  const results = [];
+
+  this.push(list[0]);
+  for (let i = 1, len = list.length; i < len; ++i) {
+    if (this[0] <= list[i]) {
+      results.push(this.length);
+      this.length = 0;
+    }
+    this.push(list[i]);
+  }
+  results.push(this.length);
+  this.length = 0;
+
+  return new Array(...results);
+}
+
 export const solution = (progresses, speeds) => {
+  progresses = progresses.map((p, i) => Math.ceil((100 - p) / speeds[i]));
+  const stack = [];
+  return stack.a(progresses);
+};
+
+export const other_solution = (progresses, speeds) => {
   let stack = [0];
   let remainingDays = []; // STACK(LIFO)
   const taskListLen = progresses.length;
@@ -18,8 +45,6 @@ export const solution = (progresses, speeds) => {
 
   return stack;
 };
-
-export const other_solution = (progresses, speeds) => {};
 
 export const examples__arr = [
   {
