@@ -74,6 +74,11 @@ export default class N extends Number {
     return (cost * number * (number + 1)) / 2;
   }
 
+  // 곱
+  static factorial(n) {
+    
+  }
+
   // 같은 개수, 같은 합, 최대 곱이 되는 집합
   static maximumBySameNumberAndEqualSum(numberOfNumbers, sumOfNumbers) {
     const remainder = (sumOfNumbers / numberOfNumbers) >> 0;
