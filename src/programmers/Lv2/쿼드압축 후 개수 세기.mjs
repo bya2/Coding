@@ -1,4 +1,109 @@
-export const solution = (grid = [[1]]) => {
+class Quad {
+  SEX = { 0: 0, 1: 0 };
+
+  static isValid(arr, n, i) {
+    return i === n
+      ? "⚡"
+      : new Set(arr[i]).size == 1 && [...new Set(arr[i])][0] == arr[0][0]
+      ? this.isValid(arr, n, i + 1)
+      : false;
+  }
+
+  static partition(arr, n) {
+    return [
+      [0, 0],
+      [0, n],
+      [n, 0],
+      [n, n],
+    ].map((v) => new Array(n).fill("🔥").map((_, i) => arr[v[0] + i].slice(v[1], v[1] + n)));
+  }
+
+  static execute(arr, n) {
+    return this.isValid(arr, n, 0)
+      ? (SEX[arr[0][0]] += 1)
+      : this.partition(arr, ~~(n / 2)).forEach((particle) => this.execute(particle, ~~(n / 2)));
+  }
+}
+
+export function solution(arr) {
+  const results = [0, 0];
+
+  function check(x, y, length) {
+    if (length === 1) return results[arr[x][y]]++;
+
+    let flag = true;
+    for (let i = x; i < x + length; i++) {
+      for (let j = y; j < y + length; j++) {
+        if (arr[x][y] !== arr[i][j]) {
+          flag = false;
+          break;
+        }
+      }
+    }
+
+    if (flag) return ++results[arr[x][y]];
+
+    length >>= 1;
+
+    for (let [i, j] of [
+      [0, 0],
+      [0, length],
+      [length, 0],
+      [length, length],
+    ]) {
+      check(x + i, y + j, length);
+    }
+  }
+
+  check(0, 0, arr.length);
+
+  return results;
+}
+
+export const solution2 = (arr) => {
+  const exp = Math.log2(arr.length);
+
+  const compress = (row, col, exp) => {
+    if (exp === 0) {
+      return arr[row][col] ? [0, 1] : [1, 0];
+    }
+
+    const n = 2 ** --exp;
+    const list = [
+      [0, 0],
+      [0, n],
+      [n, 0],
+      [n, n],
+    ];
+
+    for (let [row, col] of list) {
+      let [zeros, ones] = compress();
+    }
+  };
+
+  const quadZip = (row, col, n) => {
+    if (n < 2) return arr[row][col] ? [0, 1] : [1, 0];
+    let cnt0 = 0,
+      cnt1 = 0;
+    n >>= 1;
+    for (let [i, j] of [
+      [0, 0],
+      [0, 1],
+      [1, 0],
+      [1, 1],
+    ]) {
+      let [zero, one] = quadZip(row + i * n, col + j * n, n);
+      cnt0 += zero;
+      cnt1 += one;
+    }
+    if (cnt0 === 0) return [0, 1];
+    if (cnt1 === 0) return [1, 0];
+    return [cnt0, cnt1];
+  };
+  return quadZip(0, 0, arr.length);
+};
+
+export const origin_solution = (grid = [[1]]) => {
   const results = [0, 0];
   const n = Math.log2(grid.length);
 
@@ -17,7 +122,7 @@ export const solution = (grid = [[1]]) => {
     if (isComp) {
       zeros !== 0 ? results[0]++ : results[1]++;
     } else if (n <= 1) {
-      results[0] += zeros; 
+      results[0] += zeros;
       results[1] += ones;
     } else {
       // 나누기(인덱스)
