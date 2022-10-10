@@ -72,4 +72,26 @@ export default class NArr extends Arr {
     for (; a < b; a++) arr.push(a);
     return arr;
   }
+
+  // 높이, 밑변의 길이가 n인 삼각형 순서의 숫자 배열 (시작 1)
+  // 반시계 방향
+  static sortedByCCWTri(length) {
+    const arr = Array.from({ length }, (_, i) => Array(i + 1).fill(0));
+
+    for (let [num, row, col, val] = [length, -1, 0, 0]; num > 0; num -= 3) {
+      for (let i = 0; i < num; ++i) {
+        arr[++row][col] = ++val;
+      }
+
+      for (let [i, len] = [0, num - 1]; i < len; ++i) {
+        arr[row][++col] = ++val;
+      }
+
+      for (let [i, len] = [0, num - 2]; i < len; ++i) {
+        arr[--row][--col] = ++val;
+      }
+    }
+
+    return [].concat(...arr);
+  }
 }

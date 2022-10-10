@@ -1,16 +1,16 @@
 export function solution(n) {
   const arr = Array.from({ length: n }, (_, i) => Array(i + 1).fill(0));
 
-  for (let [num, row, col, val] = [n, -1, 0, 0]; num > 0; num -= 3) {
-    for (let i = 0; i < num; ++i) {
+  for (let [m, row, col, val] = [n, -1, 0, 0]; m > 0; m -= 3) {
+    for (let i = 0; i < m; ++i) {
       arr[++row][col] = ++val;
     }
 
-    for (let [i, len] = [0, num - 1]; i < len; ++i) {
+    for (let [i, len] = [0, m - 1]; i < len; ++i) {
       arr[row][++col] = ++val;
     }
 
-    for (let [i, len] = [0, num - 2]; i < len; ++i) {
+    for (let [i, len] = [0, m - 2]; i < len; ++i) {
       arr[--row][--col] = ++val;
     }
   }
