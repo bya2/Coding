@@ -1,7 +1,7 @@
 export default class NMap extends Map {
   // 증감
   increase(key, value = 1) {
-    this.set(key, this.has(key) ? this.get(key) + value : value);
+    return this.set(key, this.has(key) ? this.get(key) + value : value);
   }
 
   decrease(key, value = 1) {

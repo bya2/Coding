@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/lv2/삼각 달팽이.mjs";
+import { solution, examples__arr } from "./programmers/lv2/할인 행사.mjs";
 
 (function () {
   console.log("Solve:");
