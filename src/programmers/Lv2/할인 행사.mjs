@@ -1,3 +1,5 @@
+import NMap from "../../logic/NumberMap.mjs";
+
 Map.prototype.incr = function (key, value = 1) {
   return this.set(key, (this.get(key) ?? 0) + value);
 };
@@ -14,12 +16,18 @@ Map.from2 = function (keys = [], values = []) {
   return keys.reduce((map, k, i) => map.set(k, values[i]), new this());
 };
 
+export function other_solution(want = [""], number = [0], discount = [""], scopes = 10) {
+  const map = new NMap([...Map.from2(want, number)]);
+  return map.requestInScope(discount, scopes);
+}
+
 export function solution(want = [""], number = [0], discount = [""]) {
   let count = discount.length - 9;
   const wantMap = Map.from2(want, number);
   const discountMap = Map.from(discount.slice(0, 10));
 
   for (let product of want) {
+    console.log(product);
     if (wantMap.get(product) > (discountMap.get(product) ?? 0)) {
       --count;
       break;
@@ -31,6 +39,7 @@ export function solution(want = [""], number = [0], discount = [""]) {
     discountMap.decr(discount[i - 10]);
 
     for (let product of want) {
+      console.log(product);
       if (wantMap.get(product) > (discountMap.get(product) ?? 0)) {
         --count;
         break;
