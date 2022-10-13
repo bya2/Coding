@@ -29,7 +29,7 @@ Object.defineProperties(Map.prototype, {
   },
 });
 
-export const solution = (orders = [""], course = [0]) => {
+export const other_solution = (orders = [""], course = [0]) => {
   let arr = [];
 
   for (let combLength of course) {
@@ -61,7 +61,7 @@ export const solution = (orders = [""], course = [0]) => {
   return arr.sort();
 };
 
-export const other_solution = (orders = [""], course = [0]) => {
+export const solution = (orders = [""], course = [0]) => {
   let arr = [];
   const sArr = new SArr();
   const nMap = new NMap();
@@ -70,12 +70,12 @@ export const other_solution = (orders = [""], course = [0]) => {
     const map = new NMap();
     for (let order of orders) {
       if (order.length < combLength) continue;
-      for (let comb of new SArr(...order).getCombinationsBy(combLength)) {
-        map.increase(comb);
+      for (let comb of sArr.getCombinationsBy.call([...order], combLength)) {
+        nMap.increase.call(map, comb);
       }
     }
 
-    arr = [...arr, ...map.keysWithMaximum(2)];
+    arr = [...arr, ...nMap.keysWithMaximum.bind(map)(2)];
   }
 
   return arr.sort();
