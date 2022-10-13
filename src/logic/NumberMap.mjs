@@ -63,6 +63,34 @@ export default class NMap extends Map {
     return validScopes;
   }
 
+  /**
+   * MAP 안에서 최댓값을 가진 키 목록 (Stack)
+   * @param least 키값이 가져야할 최솟값
+   * @returns 키 목록
+   */
+  keysWithMaximum(least = 1) {
+    const arrStack = []; // keys
+    let maximum = 0;
+
+    for (let key of this.keys()) {
+      if ((this.get(key) || -Infinity) < least) continue;
+
+      if (arrStack.length === 0) {
+        arrStack.push(key);
+        maximum = this.get(key) || -Infinity;
+        continue;
+      }
+
+      const b = this.get(key) || -Infinity;
+      if (maximum > b) continue;
+      if (maximum < b) arrStack.length = 0;
+      arrStack.push(key);
+      maximum = this.get(key) || -Infinity;
+    }
+
+    return arrStack;
+  }
+
   // 경우의 수
   numberOfCases() {
     return [...this.values()].reduce((acc, n) => acc * (n + 1), 1);

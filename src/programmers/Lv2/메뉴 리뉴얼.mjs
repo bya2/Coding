@@ -1,9 +1,11 @@
+import NMap from "../../logic/NumberMap.mjs";
+import SArr from "../../logic/StringArray.mjs";
+
 Object.defineProperties(Array.prototype, {
   getCombinations: {
     value: function (combLength = 1) {
       let combinations = [];
       const cb = (acc, index) => {
-        // console.log(acc);
         if (acc.length === combLength) {
           combinations.push(acc.sort().join(""));
           return;
@@ -14,7 +16,7 @@ Object.defineProperties(Array.prototype, {
         }
       };
       cb([], 0);
-      return combinations;  
+      return combinations;
     },
   },
 });
@@ -54,6 +56,26 @@ export const solution = (orders = [""], course = [0]) => {
     }
 
     arr = [...arr, ...stack];
+  }
+
+  return arr.sort();
+};
+
+export const other_solution = (orders = [""], course = [0]) => {
+  let arr = [];
+  const sArr = new SArr();
+  const nMap = new NMap();
+
+  for (let combLength of course) {
+    const map = new NMap();
+    for (let order of orders) {
+      if (order.length < combLength) continue;
+      for (let comb of new SArr(...order).getCombinationsBy(combLength)) {
+        map.increase(comb);
+      }
+    }
+
+    arr = [...arr, ...map.keysWithMaximum(2)];
   }
 
   return arr.sort();
