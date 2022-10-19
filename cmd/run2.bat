@@ -1,0 +1,1 @@
+node ./src/baekjoon/run.js
