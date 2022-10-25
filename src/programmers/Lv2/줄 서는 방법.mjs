@@ -1,8 +1,37 @@
 /**
- * @param {number} n 사람의 수
- * @param {number} k n! 이하의 자연수
+ * @param {number} n 요소의 수
+ * @param {number} k 순번(n! 이하의 자연수)
  * @return {number[]} k번째 경우의 수
  */
+export const solution = (n, k) => {
+  const arr = Array.from({ length: n + 1 }, (_, i) => i);
+  arr.shift();
+
+  let seq = [];
+  k--;
+  while (arr.length) {
+    if (k === 0) {
+      seq.push(...arr);
+      break;
+    }
+
+    const factN = factorial(arr.length - 1);
+    const index = ~~(k / factN);
+    k = k % factN;
+
+    seq.push(arr[index]);
+    arr.splice(index, 1);
+  }
+
+  return seq;
+};
+
+const factorial = (n) => {
+  let val = 1;
+  for (let i = 2; i <= n; i++) val *= i;
+  return val;
+};
+
 export const fail_solution = (n, k) => {
   let costs = [0, 1];
   for (let i = 2, to = n; i < to; ++i) costs.push(costs[i - 1] * i);
