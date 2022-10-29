@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/lv2/거리두기 확인하기.mjs";
+import { solution, examples__arr } from "./programmers/lv1/삼총사.mjs";
 
 (function () {
   console.log("Solve:");
