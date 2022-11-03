@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Test/Lv3.mjs";
+import { solution, examples__arr } from "./programmers/Lv3/표 편집.mjs";
 
 (function () {
   console.log("Solve:");
