@@ -47,14 +47,13 @@ export default class AdjacencyListGraph extends Map {
   }
 
   addEdge(node1, node2) {
-    this.addVertex(node1);
-    this.addVertex(node2);
-
     this.get(node1).add(node2);
-    node1.adjacencyList.add(node2);
-
     this.get(node2).add(node1);
-    node2.adjacencyList.add(node1);
+  }
+
+  removeEdge(node1, node2) {
+    this.get(node1).delete(node2);
+    this.get(node2).delete(node1);
   }
 
   connectAll() {
