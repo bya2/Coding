@@ -1,4 +1,26 @@
 /**
+ * @param {(1|2|3)[]} ingredient
+ */
+export const solution = (ingredient) => {
+  const stack = [];
+  let count = 0;
+  for (let i = 0; i < ingredient.length; ) {
+    if (ingredient[i] === 1) {
+      if (ingredient[i + 1] === 2 && ingredient[i + 2] === 3 && ingredient[i + 3] === 1) {
+        ingredient.splice(i, 4);
+        count++;
+        if (stack.length) i = stack.pop();
+        continue;
+      } else {
+        stack.push(i);
+      }
+    }
+    ++i;
+  }
+  return count;
+};
+
+/**
  * TIME EXCEED
  * @param {(1|2|3)[]} ingredient
  */
