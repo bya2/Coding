@@ -6,24 +6,88 @@
  * @return {number} 상자를 실을 수 있는 개수
  */
 export const solution = (order) => {
+  let boxesInTruck = 0;
+  let sub = [];
+
+  for (let box = 1; box <= order.length; box++) {
+    const target = order[boxesInTruck];
+    if (box === target) {
+      ++boxesInTruck;
+    } else if (sub[sub.length - 1] === target) {
+      sub.pop();
+      ++boxesInTruck;
+      --box;
+    } else {
+      sub.push(box);
+    }
+  }
+
+  while (sub.length) {
+    if (sub[sub.length - 1] === order[boxesInTruck]) {
+      sub.pop();
+      ++boxesInTruck;
+    } else {
+      break;
+    }
+  }
+
+  return boxesInTruck;
+};
+
+/**
+ * RUNTIME ERROR + TIME EXCEED
+ * @param {number[]} order
+ */
+export const fail_solution2 = (order) => {
+  const origin = Array.from({ length: order.length }, (_, i) => i + 1);
+  const tmp = [];
+  const truck = [];
+
+  for (const curr of order) {
+    if (origin.length && origin[0] <= curr) {
+      const d = curr - origin[0];
+      tmp.push(...origin.splice(0, d));
+      truck.push(origin.shift());
+      continue;
+    }
+
+    if (tmp.length && tmp[tmp.length - 1] === curr) {
+      truck.push(tmp.pop());
+    } else {
+      break;
+    }
+  }
+
+  return truck.length;
+};
+
+/**
+ * RUNTIME ERROR + TIME EXCEED
+ * @param {number[]} order
+ */
+export const fail_solution = (order) => {
   let origin = Array.from({ length: order.length }, (_, i) => i + 1);
   const tmp = [];
   const truck = [];
 
   for (const n of order) {
-    const i = origin.findIndex((e) => n === e);
+    if (origin.length) {
+      const i = origin.findIndex((e) => n === e);
 
-    if (i > -1 && origin.length) {
-      tmp.push(...origin.slice(0, i));
-      origin = origin.slice(i);
-      n === origin[0] && truck.push(origin.shift());
-      continue;
+      if (i > -1) {
+        tmp.push(...origin.slice(0, i));
+        origin = origin.slice(i);
+        n === origin[0] && truck.push(origin.shift());
+        continue;
+      }
     }
 
-    if (n === tmp[tmp.length - 1]) {
-      truck.push(tmp.pop());
-    } else {
-      break;
+    if (tmp.length) {
+      if (n === tmp[tmp.length - 1]) {
+        truck.push(tmp.pop());
+      } else {
+        break;
+      }
     }
   }
 
