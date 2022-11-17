@@ -1,39 +1,42 @@
+class N {
+  static getMaximumDivisor(n) {
+    if (n === 1) return 0;
+
+    for (let i = 2, len = Math.sqrt(n); i <= len; ++i) {
+      if (n % i === 0) {
+        return n / i;
+      }
+    }
+    return 1;
+  }
+}
+
 /**
  * @param {number} begin
  * @param {number} end
  */
 export const solution = (begin, end) => {
-  const len = end - begin + 1;
-  const arr = Array.from({ length: len + 1 }, () => 0);
-  let n = begin * 2;
-  let i = n - begin + 1;
-
-  if (n > end) return arr;
-
-  for (; i < len; ++i, ++n) {
-    for (let d = 2; ; ++d) {
-      if (n % d === 0) {
-        arr[i] = d;
-        break;
+  const getDivisor = (n) => {
+    for (let i = 2, to = Math.sqrt(n); i <= to; ++i) {
+      if (n % i === 0 && n / i <= 1e7) {
+        return n / i;
       }
+    }
+
+    return 1;
+  };
+
+  const arr = [];
+  for (let i = begin; i <= end; ++i) {
+    if (i === 1) {
+      arr.push(0);
+    } else {
+      arr.push(getDivisor(i));
     }
   }
 
-  while (i < len) {
-    let d = 2;
-    while (1) {
-      if (n % d === 0) {
-        arr[i] = d;
-        break;
-      }
-      ++d;
-    }
+  if (begin === 1) arr[0] = 0;
 
-    n++;
-    i++;
-  }
-
-  arr.shift();
   return arr;
 };
 
