@@ -1,1 +1,1 @@
-node ./src/baekjoon/run.js
+node ./src/baekjoon/run.mjs
