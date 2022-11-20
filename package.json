@@ -1,0 +1,21 @@
+{
+  "name": "coding",
+  "description": "Log of coding test",
+  "author": {
+    "name": "bya2",
+    "url": "https://github.com/bya2",
+    "email": "byaa1972@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bya2/coding.git"
+  },
+  "packageManager": "yarn@3.3.0",
+  "main": "src/run.mjs",
+  "scripts": {
+    "run": "node src/run.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  }
+}
