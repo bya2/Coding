@@ -17,7 +17,7 @@ class Path {
 
 const runner = (solution) => {
   const INPUT_DATA = process.platform === "linux" ? "/dev/stdin" : Path.fromFile("input.txt");
-  const inputs = fs.readFileSync(INPUT_DATA).toString().trim().split("\n");
+  const inputs = fs.readFileSync(INPUT_DATA).toString().trim().split("\r\n");
   solution(inputs);
 };
 
