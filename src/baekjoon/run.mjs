@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution } from "./정렬/수 정렬하기.mjs";
+import { solution } from "./DFS+BFS 필수 문제/DFS와 BFS.mjs";
 
 (function () {
   console.log("Solve:");
