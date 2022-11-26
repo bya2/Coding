@@ -17,5 +17,8 @@
   },
   "devDependencies": {
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "js-functions": "https://github.com/bya2/js-functions.git"
   }
 }

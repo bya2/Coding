@@ -1,23 +1,18 @@
-node_modules/
-tmp/
-/etc/
-package-lock*.json
-test*.*js
-exec/tree.bat
-*sample*
-yarn.lock
-data_structure/
-gl/
-api/
-
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+yarn.lock
 
 # Swap the comments on the following lines if you don't wish to use zero-installs
 # Documentation here: https://yarnpkg.com/features/zero-installs
 !.yarn/cache
 #.pnp.*
+
+lib/
+cmd/
+data_structure/
+gl/
+api/

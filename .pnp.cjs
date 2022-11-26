@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["js-functions", "https://github.com/bya2/js-functions.git#commit=c8b8102bc28f91963b59cb1af533a3c8ad409ce9"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"]\
           ],\
           "linkType": "SOFT"\
@@ -38,9 +39,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["coding", "workspace:."],\
+            ["js-functions", "https://github.com/bya2/js-functions.git#commit=c8b8102bc28f91963b59cb1af533a3c8ad409ce9"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["js-functions", [\
+        ["https://github.com/bya2/js-functions.git#commit=c8b8102bc28f91963b59cb1af533a3c8ad409ce9", {\
+          "packageLocation": "./.yarn/cache/js-functions-https-b7b207b53f-7410a5ccc8.zip/node_modules/js-functions/",\
+          "packageDependencies": [\
+            ["js-functions", "https://github.com/bya2/js-functions.git#commit=c8b8102bc28f91963b59cb1af533a3c8ad409ce9"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["typescript", [\
