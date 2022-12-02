@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Lv1/명예의 전당 (1).mjs";
+import { solution, examples__arr } from "./programmers/Lv1/문자열 나누기.mjs";
 
 (function () {
   console.log("Solve:");
