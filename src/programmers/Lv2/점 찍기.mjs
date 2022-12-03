@@ -4,6 +4,20 @@
  */
 export const solution = (k, d) => {
   let count = 0;
+  for (let i = 0; i <= d; i += k) {
+    const j = Math.sqrt(d ** 2 - i ** 2) >> 0;
+    count += ~~(j / k) + 1;
+  }
+  return count;
+};
+
+/**
+ * TIME EXCEED
+ * @param {number} k 차수
+ * @param {number} d 최대 거리
+ */
+export const fail_solution = (k, d) => {
+  let count = 0;
   let dd = d ** 2;
 
   function combine() {
