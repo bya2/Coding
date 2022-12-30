@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Lv1/크기가 작은 부분 문자열.mjs";
+import { solution, examples__arr } from "./programmers/Lv2/마법의 엘리베이터.mjs";
 
 (function () {
   console.log("Solve:");
