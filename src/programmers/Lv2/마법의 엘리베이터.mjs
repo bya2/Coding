@@ -1,18 +1,40 @@
 /**
- * @param {number} storey
+ * @param {number} n
  */
-export const solution = (storey) => {
-  // 자릿수로 나누고,
-  // 윗자리가 가까우면 올림
-
+export const solution = (n) => {
   let count = 0;
-  const ciphers = storey.toString().length;
-  for (let i = 0; i < ciphers; ++i) {
-    const n = storey % 10;
-    if (n > 5) count += 10 - n;
-    else count += n;
-    storey = Math.round(storey / 10);
+  let acc = 0;
+
+  while (n) {
+    let cipher = n % 10;
+    n = ~~(n / 10);
+
+    if (cipher >= 6) {
+      count += 10 - cipher;
+      n++;
+    } else {
+      count += cipher;
+    }
+
+    console.log("cipher:", cipher >= 6 ? 10 - cipher : cipher);
+
+    let upper = n % 10;
+
+    if (cipher === 5) {
+      if (upper >= 6) {
+        n++;
+        if (acc) {
+          count -= acc;
+          acc = 0;
+        }
+      } else {
+        acc++;
+      }
+    }
   }
+
+  console.log("acc:", acc);
+
   return count;
 };
 
@@ -24,5 +46,13 @@ export const examples__arr = [
   {
     storey: 2554,
     answer: 16,
+  },
+  {
+    storey: 75,
+    answer: 8,
+  },
+  {
+    storey: 555,
+    answer: 14,
   },
 ];
