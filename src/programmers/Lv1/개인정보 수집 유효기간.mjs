@@ -46,9 +46,6 @@ export function solution(today, terms, privacies) {
       mm = 12;
     }
 
-    yyyy += ~~(mm / 12);
-    mm %= 12;
-
     // console.log(`${i + 1}:`, yyyy, mm, dd, type);
 
     if (yyyy > year) continue;
