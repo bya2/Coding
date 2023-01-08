@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Lv1/개인정보 수집 유효기간.mjs";
+import { solution, examples__arr } from "./programmers/Lv2/유사 칸토어 비트열.mjs";
 
 (function () {
   console.log("Solve:");
