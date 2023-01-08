@@ -1,3 +1,74 @@
+export class D extends Date {
+  /**
+   * @param {number} value
+   */
+  increaseYear(value = 1) {
+    return this.setFullYear(this.getFullYear() + value);
+  }
+
+  /**
+   * @param {number} value
+   */
+  decreaseYear(value = 1) {
+    return this.setFullYear(this.getFullYear() + value);
+  }
+
+  /**
+   * @param {number} value
+   */
+  increaseMonth(value = 1) {
+    return this.setMonth(this.getMonth() + value);
+  }
+
+  /**
+   * @param {number} value
+   */
+  decreaseMonth(value = 1) {
+    return this.setMonth(this.getMonth() - value);
+  }
+
+  /**
+   * @param {number} value
+   */
+  increaseDay(value = 1) {
+    return this.setDate(this.getDate() + value);
+  }
+
+  /**
+   * @param {number} value
+   */
+  decreaseDay(value = 1) {
+    return this.setDate(this.getDate() - value);
+  }
+}
+
+/**
+ * @param {string} today "현재날짜"
+ * @param {string[]} terms "약관종류 유효기간"[]
+ * @param {string[]} privacies "개인정보수집일자 약관종류"[]
+ * @returns {number[]}
+ */
+export function solution(today, terms, privaices) {
+  const list = [];
+
+  today = new Date(today);
+
+  const dict = terms.reduce((obj, s) => {
+    const [type, term] = s.split(" ");
+    obj[type] = +term;
+    return obj;
+  }, {});
+
+  privaices.forEach((pri, i) => {
+    const [date, type] = pri.split(" ");
+    const v = new Date(date);
+    v.setMonth(v.getMonth() + dict[type]);
+    if (v <= today) list.push(i + 1);
+  });
+
+  return list;
+}
+
 /**
  * 개인정보 수집 유효기간
  *
@@ -8,7 +79,7 @@
  * @param {string[]} privacies "개인정보수집일자 약관종류"[]
  * @returns {number[]}
  */
-export function solution(today, terms, privacies) {
+export function solution2(today, terms, privacies) {
   var answer = [];
 
   let [year, month, day] = today.split(".").map((x) => +x);
