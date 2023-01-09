@@ -1,5 +1,8 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Lv2/유사 칸토어 비트열.mjs";
+import {
+  solution,
+  examples__arr,
+} from "./programmers/Lv2/마법의 엘리베이터.mjs";
 
 (function () {
   console.log("Solve:");

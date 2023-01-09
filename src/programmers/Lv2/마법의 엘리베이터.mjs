@@ -3,6 +3,49 @@
  */
 export const solution = (n) => {
   let count = 0;
+  let flag = 0;
+  let tmp = 0;
+
+  console.log("n:", n, "\t", "count: 0");
+
+  while (n) {
+    let cipher = n % 10;
+
+    if (cipher >= 6) {
+      count += 10 - cipher;
+      n = Math.ceil(n / 10);
+      if (flag) count -= flag;
+    } else {
+      count += cipher;
+      n = Math.floor(n / 10);
+      if (cipher === 5) {
+        if (n) flag++;
+        else count -= flag - 1;
+      } else if (flag) {
+        flag = 0;
+      }
+    }
+
+    console.log(
+      "n:",
+      n,
+      "\t",
+      `count: ${count}(+${count - tmp})`,
+      "\t",
+      `flag: ${flag}`
+    );
+
+    tmp = count;
+  }
+
+  return count;
+};
+
+/**
+ * @param {number} n
+ */
+export const solution2 = (n) => {
+  let count = 0;
   let acc = 0;
 
   while (n) {
@@ -54,5 +97,9 @@ export const examples__arr = [
   {
     storey: 555,
     answer: 14,
+  },
+  {
+    storey: 525,
+    answer: 12,
   },
 ];
