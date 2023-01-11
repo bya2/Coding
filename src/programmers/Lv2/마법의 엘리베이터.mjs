@@ -20,7 +20,7 @@ export const solution = (n) => {
       n = Math.floor(n / 10);
       if (cipher === 5) {
         if (n) flag++;
-        else count -= flag - 1;
+        else if (flag) count -= flag - 1;
       } else if (flag) {
         flag = 0;
       }
