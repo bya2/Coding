@@ -16,3 +16,6 @@ cmd/
 data_structure/
 gl/
 api/
+
+
+docker*
