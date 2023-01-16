@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./정렬/좌표 압축.mjs";
+import { solution, examples } from "./재귀/팩토리얼.mjs";
 
 (function () {
   console.log("Solve:");

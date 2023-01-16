@@ -9,16 +9,27 @@ export default class Cache extends Map {
     };
   }
 
-  static fibonacci(n) {
-    const fib = (n) => {
-      const arrCache = [1, 1];
-      for (let i = 2; i <= n; ++i) {
-        arrCache.push((arrCache[i - 1] + arrCache[i - 2]) % 1000000007);
-      }
-      return arrCache[n];
-    };
+  static fibonacci(value) {
+    const cache = new this();
 
-    return fib(n);
+    const fib = cache.memoize((value, first = 0, second = 1) => {
+      if (value === 0) return first;
+      if (value === 1) return second;
+      return fib(value - 2) + fib(value - 1);
+    });
+
+    return fib(value);
+  }
+
+  static factorial(value) {
+    const cache = new this();
+
+    const fac = cache.memoize((value) => {
+      if (value === 1) return 1;
+      return value * fac(value - 1);
+    });
+
+    return fac(value);
   }
 }
 
