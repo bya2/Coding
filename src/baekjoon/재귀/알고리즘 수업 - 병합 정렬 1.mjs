@@ -1,3 +1,4 @@
+// 퀵Sort
 // const merge = (left, right) => {
 //   const tmpArr = [];
 //   while (left.length && right.length) {
@@ -31,6 +32,7 @@ export const solution = (inputs) => {
 
   const [N, K] = inputs[0].split(" ").map(Number);
   let count = 0;
+  let value = -1;
 
   const merge = (arr, p, q, r) => {
     const tmpArr = [];
@@ -63,8 +65,8 @@ export const solution = (inputs) => {
     }
 
     count += tmpArr.length;
-    if (count >= K) {
-      console.log("BB:", tmpArr[tmpArr.length - (count - K) - 1])
+    if (count >= K && value === -1) {
+      value = tmpArr[tmpArr.length - 1 - count + K];
     }
   };
 
@@ -78,10 +80,8 @@ export const solution = (inputs) => {
   };
 
   const arr = inputs[1].split(" ").map(Number);
-  console.log(arr);
   mergeSort(arr, 0, arr.length - 1);
-  console.log(arr);
-  console.log(count);
+  return value + "";
 };
 
 export const examples = [
