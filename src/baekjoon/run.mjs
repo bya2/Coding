@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./집합과 맵/나는야 포켓몬 마스터 이다솜.mjs";
+import { solution, examples } from "./집합과 맵/숫자 카드 2.mjs";
 
 (function () {
   console.log("Solve:");
