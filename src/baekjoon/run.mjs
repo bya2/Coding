@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./완전탐색/영화감독 숍.mjs";
+import { solution, examples } from "./집합과 맵/숫자 카드.mjs";
 
 (function () {
   console.log("Solve:");
