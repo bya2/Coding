@@ -13,12 +13,11 @@ export const solution = (inputs) => {
       if (j === 0 || j === i) {
         tri[i].push(1);
       } else {
-        tri[i].push(
-          (tri[i - 1][j - 1] + tri[i - 1][j]) % 10_007
-        );
+        tri[i].push((tri[i - 1][j - 1] + tri[i - 1][j]) % 10_007);
       }
     }
   }
+  
   return tri[n][k] + "";
 };
 
