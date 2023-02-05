@@ -7,13 +7,28 @@ class Node {
     this.data = data;
   }
 }
-
 export default class Queue {
   head = null;
   tail = null;
   length = 0;
 
-  push(data) {
+  *[Symbol.iterator]() {
+    let current = this.head;
+    while (current) {
+      yield current.data;
+      current = current.next;
+    }
+  }
+
+  get front() {
+    return this.length === 0 ? -1 : this.head.data;
+  }
+
+  get rear() {
+    return this.length === 0 ? -1 : this.tail.data;
+  }
+
+  enqueue(data) {
     const node = new Node(data);
 
     if (this.head === null) {
@@ -27,43 +42,73 @@ export default class Queue {
     this.length++;
   }
 
-  pop() {
-    if (this.head === null) {
-      return -1;
-    }
+  dequeue() {
+    if (!this.head) return null;
 
-    const data = this.head.data;
-    this.head = this.head.next;
+    const node = this.head;
+    this.head = node.next;
+    if (this.head) this.head.prev = null;
+    else this.tail = null;
     this.length--;
 
-    if (this.head) {
-      this.head.prev = null;
-    } else {
-      this.tail = null;
-    }
-
-    return data;
+    return node.data;
   }
 
-  front() {
+  pop() {
     if (this.head === null) {
-      return -1;
+      return null;
     }
-    return this.head.data;
+
+    const node = this.tail;
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = node.prev;
+      this.tail.next = null;
+    }
+    this.length--;
+    return node.data;
   }
 
-  back() {
-    if (this.tail === null) {
-      return -1;
-    }
-    return this.tail.data;
-  }
-
-  empty() {
+  isEmpty() {
     return this.length === 0 ? 1 : 0;
   }
 
-  size() {
-    return this.length;
+  searchBy(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    let current;
+    if (index <= this.length / 2) {
+      current = this.head;
+      for (let i = 0; i < index; ++i) {
+        current = current.next;
+      }
+    } else {
+      current = this.tail;
+      for (let i = this.length - 1; i > index; --i) {
+        current = current.prev;
+      }
+    }
+
+    return current;
+  }
+
+  popAt(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    if (index === 0) {
+      return this.dequeue();
+    }
+
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+
+    const node = this.searchBy(index);
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
+    this.length--;
+    return node.data;
   }
 }
