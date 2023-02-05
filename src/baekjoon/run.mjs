@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./큐/큐 2.mjs";
+import { solution, examples } from "./큐/카드2.mjs";
 
 (function () {
   console.log("Solve:");
