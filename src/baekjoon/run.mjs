@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./스택/스택 수열.mjs";
+import { solution, examples } from "./큐/큐 2.mjs";
 
 (function () {
   console.log("Solve:");
