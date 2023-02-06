@@ -138,6 +138,27 @@ class Deque {
     this.length--;
     return node.data;
   }
+
+  clear() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  reverse() {
+    let currentNode = this.head;
+    let prevNode = null;
+    let nextNode = null;
+    while (currentNode) {
+      nextNode = currentNode.next;
+      currentNode.next = prevNode;
+      currentNode.prev = nextNode;
+      prevNode = currentNode;
+      currentNode = nextNode;
+    }
+    this.tail = this.head;
+    this.head = prevNode;
+  }
 }
 
 export default Deque;
