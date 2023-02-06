@@ -89,6 +89,19 @@ class Deque {
     return this.length === 0 ? 1 : 0;
   }
 
+  searchIndexOf(data) {
+    for (
+      let current = this.head, index = 0;
+      current !== null;
+      current = current.next, ++index
+    ) {
+      if (current.data === data) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
   searchBy(index) {
     if (index < 0 || index >= this.length) return null;
 
