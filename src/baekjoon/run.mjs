@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./그리디/잃어버린 괄호.mjs";
+import { solution, examples } from "./그리디/주유소.mjs";
 
 (function () {
   console.log("Solve:");
