@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./우선순위 큐/최대 힙.mjs";
+import { solution, examples } from "./동적 계획법/파일 합치기.mjs";
 
 (function () {
   console.log("Solve:");

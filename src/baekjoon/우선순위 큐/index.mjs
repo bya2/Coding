@@ -11,7 +11,7 @@ Object.defineProperties(Array.prototype, {
   },
 });
 
-class BTree extends Array {
+class BTree {
   static parentIndexOf(childIndex) {
     return Math.ceil(childIndex / 2) - 1;
   }
@@ -47,25 +47,25 @@ export default class Heap extends Array {
   }
 
   _heapifyUp() {
-    // for (
-    //   let currentIndex = this.length - 1,
-    //     parentIndex = BTree.parentIndexOf(currentIndex);
-    //   // currentIndex > 0 &&
-    //   this.#shouldSwap(this[currentIndex], this[parentIndex]);
-    //   currentIndex = parentIndex,
-    //     parentIndex = BTree.parentIndexOf(currentIndex)
-    // ) {
-    //   this.swap(currentIndex, parentIndex);
-    // }
-
-    let currentIndex = this.length - 1;
-
-    while (currentIndex > 0) {
-      const parentIndex = BTree.parentIndexOf(currentIndex);
-      if (!this.#shouldSwap(currentIndex, parentIndex)) break;
+    for (
+      let currentIndex = this.length - 1,
+        parentIndex = BTree.parentIndexOf(currentIndex);
+      // currentIndex > 0 &&
+      this.#shouldSwap(this[currentIndex], this[parentIndex]);
+      currentIndex = parentIndex,
+        parentIndex = BTree.parentIndexOf(currentIndex)
+    ) {
       this.swap(currentIndex, parentIndex);
-      currentIndex = parentIndex;
     }
+
+    // let currentIndex = this.length - 1;
+
+    // while (currentIndex > 0) {
+    //   const parentIndex = BTree.parentIndexOf(currentIndex);
+    //   if (!this.#shouldSwap(currentIndex, parentIndex)) break;
+    //   this.swap(currentIndex, parentIndex);
+    //   currentIndex = parentIndex;
+    // }
   }
 
   _heapifyDown() {
@@ -85,7 +85,7 @@ export default class Heap extends Array {
       const [leftChildIndex, rightChildIndex] = BTree.childrenIndexesOf(currentIndex);
       let priorChildIndex = null;
       if (this.#shouldSwap(leftChildIndex, currentIndex)) priorChildIndex = leftChildIndex;
-      if (this.#shouldSwap(rightChildIndex, priorChildIndex || currentIndex)) priorChildIndex = rightChildIndex;
+      if (this.#shouldSwap(rightChildIndex, priorChildIndex ?? currentIndex)) priorChildIndex = rightChildIndex;
       if (priorChildIndex === null) break;
       this.swap(currentIndex, priorChildIndex);
       currentIndex = priorChildIndex;
