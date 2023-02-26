@@ -28,7 +28,6 @@ export const solution = (inputs = [""]) => {
   const [n, m] = inputs[0].split(" ").map(Number);
   const arr = Array.from({ length: n + 1 }, (_, i) => i);
   arr.shift();
-  console.log(arr);
   return arr.combine(m).join("\n");
 };
 
