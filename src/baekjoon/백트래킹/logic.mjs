@@ -38,3 +38,22 @@ export function combine2(length) {
 
   return combinations;
 }
+
+export function combine3(length) {
+  const combinations = [];
+
+  const recur = (acc) => {
+    if (acc.length === length) {
+      combinations.push(acc.join(" "));
+      return;
+    }
+
+    for (let i = 0, len = this.length; i < len; ++i) {
+      recur([...acc, this[i]]);
+    }
+  };
+
+  recur([]);
+
+  return combinations;
+}
