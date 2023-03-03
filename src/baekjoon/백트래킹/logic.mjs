@@ -57,3 +57,22 @@ export function combine3(length) {
 
   return combinations;
 }
+
+export function combine4(length) {
+  const combinations = [];
+
+  const recur = (acc, index) => {
+    if (acc.length === length) {
+      combinations.push(acc.join(" "));
+      return;
+    }
+
+    for (let i = index; i < this.length; ++i) {
+      recur([...acc, this[i]], i);
+    }
+  };
+
+  recur([], 0);
+
+  return combinations;
+}
