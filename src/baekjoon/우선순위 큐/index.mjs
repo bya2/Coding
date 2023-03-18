@@ -1,45 +1,38 @@
-Object.defineProperties(Array.prototype, {
-  has: {
-    value(at) {
-      return this.length >= at && typeof this[at] !== "undefined";
-    },
-  },
-  swap: {
-    value(index1, index2) {
-      [this[index1], this[index2]] = [this[index2], this[index1]];
-    },
-  },
-});
-
-class BTree {
-  static parentIndexOf(childIndex) {
-    return Math.ceil(childIndex / 2) - 1;
-  }
-
-  static leftChildIndexOf(parentIndex) {
-    return parentIndex * 2 + 1;
-  }
-
-  static rightChildIndexOf(parentIndex) {
-    return parentIndex * 2 + 2;
-  }
-
-  static childrenIndexesOf(parentIndex) {
-    return [parentIndex * 2 + 1, parentIndex * 2 + 2];
-  }
-}
+const binaryTree = {
+  parentIndexOf: (childIndex) => Math.ceil(childIndex / 2) - 1,
+  childrenIndexesOf: (parentIndex) => [
+    parentIndex * 2 + 1,
+    parentIndex * 2 + 2,
+  ],
+};
 
 export default class Heap extends Array {
   #shouldSwap;
 
-  constructor(comparator) {
+  constructor(comparator = (d1, d2) => d1 > d2) {
     super();
-    this.#shouldSwap = comparator ?? ((a, b) => a > b);
+    this.#shouldSwap = comparator;
   }
 
-  #getPriorChildIndexOf(parentIndex) {
+  *[Symbol.iterator]() {
+    let i = 0;
+    while (i < this.length) {
+      yield this[i];
+      i++;
+    }
+  }
+
+  has(index) {
+    return index >= 0 && index < this.length;
+  }
+
+  swap(index1, index2) {
+    [this[index1], this[index2]] = [this[index2], this[index1]];
+  }
+
+  priorChildIndexOf(parentIndex) {
     const [leftChildIndex, rightChildIndex] =
-      BTree.childrenIndexesOf(parentIndex);
+      binaryTree.childrenIndexesOf(parentIndex);
     return this.has(rightChildIndex) &&
       this.#shouldSwap(this[rightChildIndex], this[leftChildIndex])
       ? rightChildIndex
@@ -49,46 +42,26 @@ export default class Heap extends Array {
   _heapifyUp() {
     for (
       let currentIndex = this.length - 1,
-        parentIndex = BTree.parentIndexOf(currentIndex);
-      // currentIndex > 0 &&
+        parentIndex = binaryTree.parentIndexOf(currentIndex);
+      currentIndex > 0 &&
       this.#shouldSwap(this[currentIndex], this[parentIndex]);
       currentIndex = parentIndex,
-        parentIndex = BTree.parentIndexOf(currentIndex)
+        parentIndex = binaryTree.parentIndexOf(currentIndex)
     ) {
       this.swap(currentIndex, parentIndex);
     }
-
-    // let currentIndex = this.length - 1;
-
-    // while (currentIndex > 0) {
-    //   const parentIndex = BTree.parentIndexOf(currentIndex);
-    //   if (!this.#shouldSwap(currentIndex, parentIndex)) break;
-    //   this.swap(currentIndex, parentIndex);
-    //   currentIndex = parentIndex;
-    // }
   }
 
   _heapifyDown() {
-    // for (
-    //   let currentIndex = 0,
-    //     childIndex = this.#getPriorChildIndexOf(currentIndex);
-    //   this.#shouldSwap(this[childIndex], this[currentIndex]);
-    //   currentIndex = childIndex,
-    //     childIndex = this.#getPriorChildIndexOf(currentIndex)
-    // ) {
-    //   this.swap(currentIndex, childIndex);
-    // }
-
-    let currentIndex = 0;
-    
-    while (true) {
-      const [leftChildIndex, rightChildIndex] = BTree.childrenIndexesOf(currentIndex);
-      let priorChildIndex = null;
-      if (this.#shouldSwap(leftChildIndex, currentIndex)) priorChildIndex = leftChildIndex;
-      if (this.#shouldSwap(rightChildIndex, priorChildIndex ?? currentIndex)) priorChildIndex = rightChildIndex;
-      if (priorChildIndex === null) break;
-      this.swap(currentIndex, priorChildIndex);
-      currentIndex = priorChildIndex;
+    for (
+      let currentIndex = 0,
+        higherPriorityChildIndex = this.priorChildIndexOf(currentIndex);
+      higherPriorityChildIndex < this.length &&
+      this.#shouldSwap(this[higherPriorityChildIndex], this[currentIndex]);
+      currentIndex = higherPriorityChildIndex,
+        higherPriorityChildIndex = this.priorChildIndexOf(currentIndex)
+    ) {
+      this.swap(currentIndex, higherPriorityChildIndex);
     }
   }
 
@@ -98,13 +71,13 @@ export default class Heap extends Array {
   }
 
   extract() {
-    if (this.length === 0) return null;
+    if (this.length <= 0) return null;
     else if (this.length === 1) return this.pop();
     else {
-      let root = this[0];
+      let tmp = this[0];
       this[0] = this.pop();
       this._heapifyDown();
-      return root;
+      return tmp;
     }
   }
 }

@@ -6,7 +6,7 @@ export const solution = (inputs = [""]) => {
   return inputs
     .reduce(
       (arr, n) => (
-        n === "0" ? arr.push(heap.extract() ?? 0) : heap.insert(n), arr
+        n === "0" ? arr.push(heap.extract() ?? 0) : heap.insert(+n), arr
       ),
       []
     )
@@ -36,6 +36,56 @@ export const examples = [
     2
     1
     0
+    0`,
+  },
+  {
+    inputs: `31
+    12
+    14
+    9
+    15
+    1
+    10
+    7
+    6
+    2
+    3
+    11
+    5
+    4
+    13
+    8
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0`,
+    answer: `15
+    14
+    13
+    12
+    11
+    10
+    9
+    8
+    7
+    6
+    5
+    4
+    3
+    2
+    1
     0`,
   },
 ];
