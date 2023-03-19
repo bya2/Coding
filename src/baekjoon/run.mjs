@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./동적 계획법/피보나치 수.mjs";
+import { solution, examples } from "./누적 합/구간 합 구하기4.mjs";
 
 (function () {
   console.log("Solve:");
