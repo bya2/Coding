@@ -15,10 +15,8 @@ export default class Heap extends Array {
   }
 
   *[Symbol.iterator]() {
-    let i = 0;
-    while (i < this.length) {
+    for (let i = 0; i < this.length; ++i) {
       yield this[i];
-      i++;
     }
   }
 
