@@ -1,3 +1,18 @@
+const binarySearch = () => {
+  let minimum = 1;
+  let maximum = n ** 2;
+
+  while (minimum <= maximum) {
+    const median = ~~((minimum + maximum) / 2);
+    let count = 0;
+    for (let i = 1; i <= n; ++i) count += Math.min(m, ~~(median / i));
+    if (count >= k) maximum = median - 1;
+    else minimum = median + 1;
+  }
+
+  return maximum;
+};
+
 export const solution = (inputs = [""]) => {
   const [n, k] = inputs;
 
