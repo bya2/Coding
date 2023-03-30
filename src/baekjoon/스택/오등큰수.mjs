@@ -5,8 +5,9 @@ export const solution = (inputs = [""]) => {
     },
   });
 
-  const results = [];
+  // const results = [];
   const numbers = inputs[1].split(" ").map(Number);
+  const results = Array.from({ length: +inputs[0] }, () => -1);
 
   const map = numbers.reduce(
     (map, t) => map.set(t, (map.get(t) || 0) + 1),
@@ -21,9 +22,9 @@ export const solution = (inputs = [""]) => {
     STACK.push(i);
   }
 
-  while (STACK.length) {
-    results[STACK.pop()] = -1;
-  }
+  // while (STACK.length) {
+  //   numbers[STACK.pop()] = -1;
+  // }
 
   return results.join(" ");
 };
