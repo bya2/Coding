@@ -9,6 +9,8 @@ export const binarySearch = () => {
     if (count >= k) maximum = median - 1;
     else minimum = median + 1;
   }
+
+  return maximum;s
 };
 
 export function binarySearch() {
