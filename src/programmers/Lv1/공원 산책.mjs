@@ -3,9 +3,14 @@ export const solution = (park = [""], routes = [""]) => {
     E: [0, 1],
     W: [0, -1],
     S: [1, 0],
+    N: [-1, 0],
   };
 
   let [x, y] = [0, 0];
+
+  const xLen = park.length;
+  const yLen = park[0].length;
+  console.log("Len", xLen, yLen);
 
   for (let i = 0; i < park.length; ++i) {
     const sPos = park[i].indexOf("S");
@@ -16,19 +21,29 @@ export const solution = (park = [""], routes = [""]) => {
     }
   }
 
-  const rows = park.length;
-  const columns = park[0].length;
-
   for (const route of routes) {
     const [dir, range] = route.split(" ");
+    const nx = x + range * dict[dir][0];
+    const ny = y + range * dict[dir][1];
+    let flag = true;
 
-    let nx = x + dict[dir][0] * range;
-    let ny = y + dict[dir][1] * range;
+    if (nx >= 0 && ny >= 0 && nx < xLen && ny < yLen) {
+      for (let i = 0, [dx, dy] = [x, y]; i < range; ++i) {
+        dx += dict[dir][0];
+        dy += dict[dir][1];
+        if (park[dx][dy] === "X") {
+          flag = false;
+          break;
+        }
+      }
+    } else {
+      flag = false;
+    }
 
-    if (nx <= rows || ny <= columns) continue;
-
-    x = nx;
-    y = ny;
+    if (flag) {
+      x = nx;
+      y = ny;
+    }
   }
 
   return [x, y];
