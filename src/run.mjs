@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples__arr } from "./programmers/Lv1/바탕화면 정리.mjs";
+import { solution, examples__arr } from "./programmers/Lv2/요격 시스템.mjs";
 
 (function () {
   console.log("Solve:");
