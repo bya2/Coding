@@ -8,7 +8,7 @@ Array.prototype.peek = function () {
 export const solution = (plans) => {
   const ANSWER = [];
 
-  plans = plans
+  const arr = plans
     .map((plan) => {
       const [h, m] = plan[1].split(":").map(Number);
       plan[1] = h * 60 + m;
@@ -17,28 +17,34 @@ export const solution = (plans) => {
     })
     .sort((a, b) => a[1] - b[1]);
 
-  const STACK = [];
+  const stack = [];
 
-  for (const plan of plans) {
-    if (STACK.length) {
-      let cost = plan[1] - STACK.peek[1];
-      while (STACK.length) {
-        if (cost < STACK.peek[2]) {
-          STACK.peek[2] -= cost;
-          break;
-        } else {
-          const [sub, t, m] = STACK.pop();
-          cost -= m;
-          ANSWER.push(sub);
-        }
+  for (let i = 0; i < arr.length; ++i) {
+    const plan = plans[i];
+
+    if (stack.length === 0) {
+      stack.push(plan);
+      continue;
+    }
+
+    while (stack.length) {
+      let interval = plan[1] - stack.peek[1];
+      const sub = stack.peek[0];
+      const spend = stack.peek[2];
+
+      if (interval >= spend) {
+        ANSWER.push(sub);
+        interval -= spend;
+        stack.pop();
+      } else {
+        stack.peek[2] -= interval;
+        break;
       }
-    } else {
-      STACK.push(plan);
     }
   }
 
-  while (STACK.length) {
-    ANSWER.push(STACK.pop()[0]);
+  while (stack.length) {
+    ANSWER.push(stack.pop()[0]);
   }
 
   return ANSWER;
