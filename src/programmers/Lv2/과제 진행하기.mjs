@@ -1,53 +1,55 @@
-Array.prototype.peek = function () {
-  return this[this.length - 1];
+const Plan = class {
+  constructor(name, time, spend) {
+    this.name = name;
+    const [h, m] = time.split(":").map(Number);
+    this.time = h * 60 + m;
+    this.spend = +spend;
+  }
 };
 
 /**
  * @param {string[][]} plans
  */
 export const solution = (plans) => {
-  const ANSWER = [];
+  const answer = [];
 
-  const arr = plans
-    .map((plan) => {
-      const [h, m] = plan[1].split(":").map(Number);
-      plan[1] = h * 60 + m;
-      plan[2] = +plan[2];
-      return plan;
-    })
-    .sort((a, b) => a[1] - b[1]);
+  plans = plans
+    .map((plan) => new Plan(...plan))
+    .sort((a, b) => a.time - b.time);
 
   const stack = [];
 
-  for (let i = 0; i < arr.length; ++i) {
-    const plan = plans[i];
-
-    if (stack.length === 0) {
-      stack.push(plan);
+  for (let i = 0; i < plans.length; ++i) {
+    if (!stack.length) {
+      stack.push(plans[i]);
       continue;
     }
 
-    while (stack.length) {
-      let interval = plan[1] - stack.peek[1];
-      const sub = stack.peek[0];
-      const spend = stack.peek[2];
+    let cp = stack[stack.length - 1];
+    let np = plans[i];
+    let interval = np.time - cp.time;
 
-      if (interval >= spend) {
-        ANSWER.push(sub);
-        interval -= spend;
+    while (stack.length && interval > 0) {
+      cp = stack[stack.length - 1];
+
+      if (interval >= cp.spend) {
+        answer.push(cp.name);
+        interval -= cp.spend;
         stack.pop();
       } else {
-        stack.peek[2] -= interval;
+        cp.spend -= interval;
         break;
       }
     }
+
+    stack.push(np);
   }
 
   while (stack.length) {
-    ANSWER.push(stack.pop()[0]);
+    answer.push(stack.pop().name);
   }
 
-  return ANSWER;
+  return answer;
 };
 
 export const examples__arr = [
