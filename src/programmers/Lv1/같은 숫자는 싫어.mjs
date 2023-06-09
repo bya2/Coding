@@ -1,3 +1,23 @@
+/**
+ * @param {number[]} arr
+ */
+export const re = (arr) => {
+  Object.defineProperty(Array.prototype, "peek", {
+    get: function () {
+      return this[this.length - 1];
+    },
+  });
+
+  const stack = [arr[0]];
+  for (let i = 1; i < arr.length; ++i) {
+    if (stack.peek !== arr[i]) {
+      stack.push(arr[i]);
+    }
+  }
+
+  return stack;
+};
+
 export const 연속된_중복_제거 = (...args) => {
   return args.filter((arg, i) => arg !== args[--i]);
   // return args.filter((arg, i) => {
