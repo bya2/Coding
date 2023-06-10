@@ -17,7 +17,41 @@ Array.prototype.getDeployCounts = function (list) {
   this.length = 0;
 
   return new Array(...results);
-}
+};
+
+export const re = (progresses, speeds) => {
+  Object.defineProperties(Array.prototype, {
+    peek: {
+      get: function () {
+        return this[this.length - 1];
+      },
+    },
+    clear: {
+      value: function () {
+        this.length = 0;
+      },
+    },
+  });
+
+  progresses = progresses.map((p, i) => Math.ceil((100 - p) / speeds[i]));
+  const list = [];
+  const completed = [];
+  for (const n of progresses) {
+    if (list.length === 0) {
+      list.push(n);
+      continue;
+    }
+
+    if (list[0] < n) {
+      completed.push(list.length);
+      list.clear();
+    }
+
+    list.push(n);
+  }
+  completed.push(list.length);
+  return completed;
+};
 
 export const solution = (progresses, speeds) => {
   progresses = progresses.map((p, i) => Math.ceil((100 - p) / speeds[i]));
@@ -30,11 +64,18 @@ export const other_solution = (progresses, speeds) => {
   let remainingDays = []; // STACK(LIFO)
   const taskListLen = progresses.length;
   for (let i = 0; i < taskListLen; ++i) {
-    remainingDays = [...remainingDays, Math.ceil((100 - progresses[i]) / speeds[i])];
+    remainingDays = [
+      ...remainingDays,
+      Math.ceil((100 - progresses[i]) / speeds[i]),
+    ];
   }
 
   let tgTask = remainingDays[0];
-  for (let stackIdx = 0, taskIdx = 0; taskIdx < remainingDays.length; ++taskIdx) {
+  for (
+    let stackIdx = 0, taskIdx = 0;
+    taskIdx < remainingDays.length;
+    ++taskIdx
+  ) {
     if (tgTask >= remainingDays[taskIdx]) {
       ++stack[stackIdx];
     } else {
