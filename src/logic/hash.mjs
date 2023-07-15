@@ -1,0 +1,1 @@
+export const Hash = class {};
