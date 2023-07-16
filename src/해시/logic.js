@@ -43,3 +43,4 @@ export const BoolMap = {
     return keys.reduce((obj, t) => (obj.check(t), obj), {});
   },
 };
+

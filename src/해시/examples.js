@@ -1,10 +1,31 @@
-import { dict } from "./logic";
-
 /**
+ * 차집합
  * @param {string[]} P
  * @param {string[]} C
  */
-export const 완주하지못한선수 = (P, C) => {};
+export const 완주하지못한선수 = (P, C) => {
+  const N = P.length;
+  const M = C.length;
+  const map = new Map();
+
+  for (let i = 0; i < M; ++i) {
+    const p = P[i];
+    const c = C[i];
+    map.set(p, map.has(p) ? map.get(p) + 1 : 1);
+    map.set(c, map.has(c) ? map.get(c) - 1 : -1);
+  }
+
+  for (let i = M; i < N; ++i) {
+    const p = P[i];
+    map.set(p, map.has(p) ? map.get(p) + 1 : 1);
+  }
+
+  for (let [k, v] of map) {
+    if (v > 0) return k;
+  }
+
+  return -1;
+};
 
 /**
  * @param {number[]} numbers
@@ -36,6 +57,13 @@ export const 폰켓몬 = (numbers) => {
 
   const HALF = numbers.length / 2;
   return types > HALF ? HALF : types;
+};
+
+/**
+ * @param {[string, string][]} C
+ */
+export const 의상 = (C) => {
+  
 };
 
 export const examples = {
