@@ -62,8 +62,40 @@ export const 폰켓몬 = (numbers) => {
 /**
  * @param {[string, string][]} C
  */
-export const 의상 = (C) => {
-  
+export const 의상 = (C) => {};
+
+export const 베스트앨범 = (G, P) => {
+  Object.defineProperties(Map.prototype, {
+    increase: {
+      value(key, by = 1) {
+        return this.set(key, (this.get(key) || 0) + by);
+      },
+    },
+  });
+
+  const A = [];
+  const accMap = new Map();
+  const dupMap = new Map();
+  for (let i = 0; i < G.length; ++i) {
+    A.push({
+      no: i,
+      genre: G[i],
+      play: P[i],
+    });
+    accMap.increase(G[i], P[i]);
+  }
+
+  return A.sort((a, b) => {
+    if (a.genre !== b.genre) return accMap.get(b.genre) - accMap.get(a.genre);
+    if (a.play !== b.play) return b.play - a.play;
+    return a.no - b.no;
+  })
+    .filter((album) => {
+      if (dupMap.get(album.genre) >= 2) return false;
+      dupMap.increase(album.genre);
+      return true;
+    })
+    .map((album) => album.no);
 };
 
 export const examples = {
