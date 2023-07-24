@@ -44,3 +44,27 @@ export const BoolMap = {
   },
 };
 
+function CountMap() {}
+Object.defineProperties(CountMap.prototype, {
+  count: {
+    value: function (prop) {
+      typeof this[prop] === "undefined" ? (this[prop] = 1) : ++this[prop];
+    },
+  },
+});
+
+function Arr() {}
+Object.defineProperties(Arr.prototype, {
+  filter: {
+    value: function (n, prop) {
+      const map = {};
+      return this.filter((obj) => {
+        if (map[obj[prop]] >= n) return false;
+        typeof map[obj[prop]] === "undefined"
+          ? (map[obj[prop]] = 1)
+          : map[prop]++;
+        return true;
+      });
+    },
+  },
+});
