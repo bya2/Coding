@@ -1,4 +1,4 @@
-class ArrayQueue {
+class Queue {
   data;
   size;
   constructor(data = []) {
@@ -89,7 +89,7 @@ export class SparseGraph {
   }
 
   BFS() {
-    const queue = new ArrayQueue();
+    const queue = new Queue();
     queue.enqueue(this.rootNode);
     this.rootNode.isMarked = true;
 
@@ -124,7 +124,7 @@ export class SparseGraph {
   }
 }
 
-export const other_solution = (n, edges) => {
+export const other = (n, edges) => {
   let root = new GraphNode(1);
   let graph = new SparseGraph(n, root, edges);
 };
@@ -136,7 +136,7 @@ export const solution = (n, edges) => {
     adjList[j - 1].push(i - 1);
   }
 
-  let queue = new ArrayQueue();
+  let queue = new Queue();
   queue.enqueue(0);
   let marked = [1];
 
