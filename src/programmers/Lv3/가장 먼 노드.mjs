@@ -95,6 +95,7 @@ export class SparseGraph {
 
     let maxDepth = 0;
     let leafs = [];
+    // 깊이, 큐->LinkedList로, 인접리스트
     for (let depth = 0; !queue.isEmpty(); ++depth) {
       if (queue.isEmpty()) {
         maxDepth = depth;
@@ -106,8 +107,10 @@ export class SparseGraph {
         const currNode = queue.dequeue();
         currNode.depth = depth;
 
+        // 인접리스트 주변에 있는가 없는가.
         if (this._adjacencyList.has(currNode.id)) {
           for (const adjNode of this._adjacencyList.get(currNode.id)) {
+            // 마크여부
             if (!adjNode.isMarked) {
               queue.enqueue(adjNode);
               adjNode.isMarked = true;
