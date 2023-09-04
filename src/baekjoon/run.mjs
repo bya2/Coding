@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./집합과 맵/회사에 있는 사람.mjs";
+import { solution, examples } from "./약수/약수 구하기_2501.mjs";
 
 (function () {
   console.log("Solve:");
