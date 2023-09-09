@@ -1,17 +1,39 @@
+import { getDivisors } from "./logic.mjs";
 /**
  * @param {string[]} inputs
  */
+export function solution2(inputs) {
+  inputs.pop();
+  const _inputs = inputs.map(Number);
+
+  return _inputs
+    .map((input) => {
+      const arr = getDivisors(input);
+      const sum = arr.reduce((a, b) => a + b, 0);
+
+      return sum === input
+        ? `${input} = ${arr.reduce((a, b) => a + " + " + b)}`
+        : `${input} is NOT perfect.`;
+    })
+    .join("\n");
+}
+
 export function solution(inputs) {
   inputs.pop();
   const lines = inputs.map(Number);
 
   const Divisor = {
     arrOf(_n) {
-      const arr = [];
-      for (let i = 1, len = _n / 2; i <= len; ++i)
-        if (_n % i === 0) arr.push(i);
-      // arr.push(_n);
-      return arr;
+      const v1 = [1],
+        v2 = [];
+      const sqrtN = Math.sqrt(_n);
+      for (let i = 2; i <= sqrtN; ++i) {
+        if (_n % i === 0) {
+          v1.push(i);
+          if (i !== sqrtN) v2.unshift(_n / i);
+        }
+      }
+      return [v1, v2].flat();
     },
   };
 
@@ -24,6 +46,7 @@ export function solution(inputs) {
   return lines
     .map((line) => {
       const arr = Divisor.arrOf(line);
+      console.log(arr);
       const sum = Sum.from(arr);
 
       return sum === line
