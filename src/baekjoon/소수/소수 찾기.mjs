@@ -1,4 +1,4 @@
-import { isPrimeNumber } from "./logic.mjs";
+import { is_prime_number } from "./logic.mjs";
 
 /**
  * @param {string[]} lines
@@ -9,7 +9,7 @@ export const solution = (lines) => {
       .split(" ")
       .map(Number)
       .reduce((count, n) => {
-        if (isPrimeNumber(n)) count++;
+        if (is_prime_number(n)) count++;
         return count;
       }, 0) + ""
   );
@@ -19,6 +19,6 @@ export const examples = [
   {
     inputs: `4
     1 2 3 5 7 11 10`,
-    answer: `4`,
+    answer: `5`,
   },
 ];
