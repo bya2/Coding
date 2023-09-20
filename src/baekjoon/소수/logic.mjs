@@ -13,6 +13,16 @@ export const algorithm__Sieve_Of_Eratosthenes = (n) => {
   return numbers;
 };
 
+export const isPrime = (n) => {
+  if (n <= 1) return false;
+
+  const sqrtN = Math.sqrt(n);
+  for (let i = 2; i < sqrtN; ++i) {
+    if (n % i === 0) return false;
+  }
+  return true;
+};
+
 export const is_prime_number = (n) => {
   if (n <= 1) return false;
   if (n <= 3) return true;
@@ -65,4 +75,24 @@ export const count_primes_in_range = (a, b) => {
   a % 2 === 0 && a++;
   for (let i = a; i <= b; i += 2) is_prime_number(i) && ++count;
   return count;
+};
+
+export const factorize = (n) => {
+  const divide = (n) => {
+    for (let i = 2; i <= Math.sqrt(n); ++i) {
+      if (n % i === 0) return { prime: i, isPrime: false };
+    }
+    return { prime: n, isPrime: true };
+  };
+
+  const primes = [];
+
+  while (n >= 2) {
+    let { prime, isPrime } = divide(n);
+    primes.push(prime);
+    if (isPrime) break;
+    n /= prime;
+  }
+
+  return primes;
 };
