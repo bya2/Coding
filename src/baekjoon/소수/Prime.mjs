@@ -44,8 +44,10 @@ export const countPrimesBetween = (from, to) => {
 /**
  * 에라스토의 체
  */
-export default class SieveOfEratosthenes {
+export class SieveOfEratosthenes {
+  _maximum;
   _isPrimeList;
+  _primes = [];
 
   /**
    * @param {number} maximum
@@ -60,7 +62,12 @@ export default class SieveOfEratosthenes {
       }
     }
 
+    this._maximum = maximum;
     this._isPrimeList = isPrimeList;
+  }
+
+  get isPrimeList() {
+    return this._isPrimeList;
   }
 
   /**
@@ -71,9 +78,24 @@ export default class SieveOfEratosthenes {
   }
 
   getPrimes() {
+    if (typeof this._primes !== "undefined") return this._primes;
+
     const primes = [];
     const _bools = this._isPrimeList;
     for (let i = 0; i < _bools.length; ++i) if (_bools[i]) primes.push(i);
+    this._primes = primes;
+    return primes;
+  }
+
+  /**
+   * @param {number} n
+   */
+  getPrimesGE(n) {
+    if (n > this._maximum) throw new Error();
+
+    const primes = [];
+    const _bools = this._isPrimeList;
+    for (let i = n; i < _bools.length; ++i) if (_bools[i]) primes.push(i);
     return primes;
   }
 }
