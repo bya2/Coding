@@ -47,9 +47,10 @@ export const countPrimesBetween = (from, to) => {
 export class SieveOfEratosthenes {
   _maximum;
   _isPrimeList;
-  _primes = [];
+  _primes;
 
   /**
+   * 소수 판별 리스트 작성
    * @param {number} maximum
    */
   constructor(maximum) {
@@ -81,8 +82,8 @@ export class SieveOfEratosthenes {
     if (typeof this._primes !== "undefined") return this._primes;
 
     const primes = [];
-    const _bools = this._isPrimeList;
-    for (let i = 0; i < _bools.length; ++i) if (_bools[i]) primes.push(i);
+    const _dict = this._isPrimeList;
+    for (let i = 0; i < _dict.length; ++i) if (_dict[i]) primes.push(i);
     this._primes = primes;
     return primes;
   }
@@ -94,8 +95,28 @@ export class SieveOfEratosthenes {
     if (n > this._maximum) throw new Error();
 
     const primes = [];
-    const _bools = this._isPrimeList;
-    for (let i = n; i < _bools.length; ++i) if (_bools[i]) primes.push(i);
+    const _dict = this._isPrimeList;
+    for (let i = n; i < _dict.length; ++i) if (_dict[i]) primes.push(i);
     return primes;
+  }
+
+  /**
+   * 소인수분해
+   * @param {number} n
+   */
+  getFactorizedPrimes(n) {
+    const _primes = this.getPrimes();
+
+    const factorized = [];
+    let r = n;
+     
+    while (r >= 2) {
+      const q = _primes.find((v) => r % v === 0);
+      factorized.push(q);
+      if (typeof q === "undefined") break;
+      r /= q;
+    }
+
+    return factorized;
   }
 }
