@@ -41,6 +41,13 @@ export const countPrimesBetween = (from, to) => {
   return count;
 };
 
+export const getFactorizedPrimes = (n) => {
+  let d = 2;
+  const SQRT_N = Math.sqrt(n);
+
+  while (d <= SQRT_N) {}
+};
+
 /**
  * 에라스토의 체
  */
@@ -102,6 +109,7 @@ export class SieveOfEratosthenes {
 
   /**
    * 소인수분해
+   * 비효율
    * @param {number} n
    */
   getFactorizedPrimes(n) {
@@ -109,9 +117,11 @@ export class SieveOfEratosthenes {
 
     const factorized = [];
     let r = n;
-     
+    let di = 0;
+
     while (r >= 2) {
-      const q = _primes.find((v) => r % v === 0);
+      for (; di < _primes.length; ++di) if (r % _primes[di] === 0) break;
+      const q = _primes[di];
       factorized.push(q);
       if (typeof q === "undefined") break;
       r /= q;
