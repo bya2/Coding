@@ -18,3 +18,7 @@ export const lcmOf = (n, m) => {
   }
   return ~~(mtp / m);
 };
+
+export const gcdFor = (...numbers) => {
+  
+}
