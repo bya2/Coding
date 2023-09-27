@@ -37,6 +37,19 @@ class SieveOfEratosthenes {
     return primes;
   }
 
+  countPrimes(ge) {
+    const _bools = this._bools;
+    const FROM = ge || 0;
+    const TO = _bools.length;
+    let count = 0;
+
+    for (let i = FROM; i <= TO; ++i) {
+      if (_bools[i]) ++count;
+    }
+
+    return count;
+  }
+
   factorize(n) {
     const elems = [];
     const primes = this.primes();

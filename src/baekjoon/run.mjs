@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./소수/1929_소수 구하기.mjs";
+import { solution, examples } from "./소수/4948_베르트랑 공존.mjs";
 
 (function () {
   console.log("Solve:");
