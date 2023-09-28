@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./소수/4948_베르트랑 공존.mjs";
+import { solution, examples } from "./소수/17103_골드바흐 파티션.mjs";
 
 (function () {
   console.log("Solve:");
