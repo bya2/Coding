@@ -1,15 +1,51 @@
-import { getPrimes } from "./logic.mjs";
+import SieveOfEratosthenes from "./SieveOfEratosthenes.mjs";
+
+// const e = new SieveOfEratosthenes(1_000_000);
+// const primes = e.getPrimes();
+
+const e = new SieveOfEratosthenes(1_000_000);
+const primes = e.getPrimes();
 
 /**
  * 골드바흐의 추측
  * : 2보다 큰 짝수는 두 소수의 합으로 나타낼 수 있다.
  * @param {string[]} lines
- *
- * 투 포인터로 루프
- * 두 수의 합이 N을 초과하면 루프 종료
- *
  */
 export const solution = (lines) => {
+  lines.shift();
+  return lines.map((n) => {});
+};
+
+export const solution2 = (lines) => {
+  lines.shift();
+  return lines
+    .map((n) => {
+      n = +n;
+      let count = 0;
+      const peek = primes.findIndex((p) => p >= n) - 1;
+
+      for (let i = 0, j = peek; i <= j; ) {
+        const sum = primes[i] + primes[j];
+
+        if (sum > n) {
+          j--;
+          continue;
+        }
+
+        if (sum === n) {
+          count++;
+          j--;
+        }
+
+        ++i;
+      }
+
+      return count;
+    })
+    .join("\n");
+};
+
+export const fail = (lines) => {
   lines.shift();
   return lines
     .map((n) => {

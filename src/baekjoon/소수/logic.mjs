@@ -81,8 +81,8 @@ export const getSieveOfEratosthenesList = (maximum) => {
   const primeTags = Array(maximum + 1).fill(true);
   primeTags[0] = primeTags[1] = false;
 
-  const CEIL_SQRT_N = Math.ceil(Math.sqrt(maximum));
-  for (let i = 2; i <= CEIL_SQRT_N; ++i) {
+  const SQRT_MAXIMUM = Math.sqrt(maximum);
+  for (let i = 2; i <= SQRT_MAXIMUM; ++i) {
     if (primeTags[i]) {
       for (let j = i * i; j <= maximum; j += i) primeTags[j] = false;
     }
