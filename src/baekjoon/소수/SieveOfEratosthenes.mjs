@@ -20,10 +20,20 @@ class SieveOfEratosthenes {
     this._sieve = sieve;
   }
 
+  get sieve() {
+    return this._sieve;
+  }
+
+  /**
+   * @param {number} n
+   */
   isPrime(n) {
     return this._sieve[n];
   }
 
+  /**
+   * @param {number} ge Greater Than or Equals N
+   */
   getPrimes(ge) {
     const _sieve = this._sieve;
     const primes = [];
@@ -37,6 +47,9 @@ class SieveOfEratosthenes {
     return primes;
   }
 
+  /**
+   * @param {number} ge Greater Than or Equals N
+   */
   countPrimes(ge) {
     const _sieve = this._sieve;
     const FROM = ge || 0;
@@ -50,6 +63,10 @@ class SieveOfEratosthenes {
     return count;
   }
 
+  /**
+   * 소인수분해
+   * @param {number} n
+   */
   factorize(n) {
     const elems = [];
     const primes = this.primes();

@@ -4,6 +4,7 @@ import SieveOfEratosthenes from "./SieveOfEratosthenes.mjs";
 // const primes = e.getPrimes();
 
 const e = new SieveOfEratosthenes(1_000_000);
+const sieve = e.sieve;
 const primes = e.getPrimes();
 
 /**
@@ -13,7 +14,19 @@ const primes = e.getPrimes();
  */
 export const solution = (lines) => {
   lines.shift();
-  return lines.map((n) => {});
+  return lines
+    .map((n) => {
+      n = +n;
+      let count = 0;
+
+      const HALF_N = ~~(n / 2);
+      for (let i = 0; i <= HALF_N; ++i) {
+        sieve[i] && sieve[n - i] && ++count;
+      }
+
+      return count;
+    })
+    .join("\n");
 };
 
 export const solution2 = (lines) => {
