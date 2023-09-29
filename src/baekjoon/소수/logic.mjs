@@ -63,30 +63,33 @@ export const countPrimesInRange = (n, m) => {
 
   if (n <= 2) n = 2;
 
-  let cnt = 0;
+  let count = 0;
 
   if (n % 2 === 0) {
-    if (n === 2) cnt++;
+    if (n === 2) count++;
     n++;
   }
 
   for (let i = n; i <= m; i += 2) {
-    if (isPrime(i)) cnt++;
+    if (isPrime(i)) count++;
   }
 
-  return cnt;
+  return count;
 };
 
-export const getSieveOfEratosthenesList = (maximum) => {
-  const primeTags = Array(maximum + 1).fill(true);
-  primeTags[0] = primeTags[1] = false;
+/**
+ * @param {number} maximum
+ */
+export const getSieveOfEratosthenes = (maximum) => {
+  const sieve = Array(maximum + 1).fill(true);
+  sieve[0] = sieve[1] = false;
 
   const SQRT_MAXIMUM = Math.sqrt(maximum);
   for (let i = 2; i <= SQRT_MAXIMUM; ++i) {
-    if (primeTags[i]) {
-      for (let j = i * i; j <= maximum; j += i) primeTags[j] = false;
+    if (sieve[i]) {
+      for (let j = i * i; j <= maximum; j += i) sieve[j] = false;
     }
   }
 
-  return primeTags;
+  return sieve;
 };
