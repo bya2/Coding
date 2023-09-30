@@ -2,15 +2,12 @@
  * @param {number} n
  */
 export const isPrime = (n) => {
-  if (n <= 1) return false;
-  if (n <= 3) return true;
-  if (n % 2 === 0 || n % 3 === 0) return false;
-
-  for (let i = 5; i <= Math.sqrt(n); i += 2) {
-    if (n % i === 0) return false;
+  let i = 2;
+  const SQRT_N = n ** 0.5;
+  while (i <= SQRT_N) {
+    if (n % i++ < 1) return false;
   }
-
-  return true;
+  return n > 1;
 };
 
 /**
@@ -82,7 +79,6 @@ export const countPrimesInRange = (n, m) => {
  */
 export const factorize = (n) => {
   const factors = [];
-  
 };
 
 /**
