@@ -1,26 +1,8 @@
-function isEnclose(
-  _pairs = {
-    "]": "[",
-    ")": "(",
-  }
-) {
-  const opens = Object.values(_pairs);
-  const closes = Object.keys(_pairs);
-  const arr = [];
-  for (let i = 0, len = this.length - 1; i < len; ++i) {
-    if (opens.includes(this[i])) {
-      arr.push(this[i]);
-    } else if (closes.includes(this[i])) {
-      if (arr.pop() !== _pairs[this[i]]) return false;
-    }
-  }
-
-  return arr.length === 0;
-}
+import { isEnclosed } from "./logic.mjs";
 
 export const solution = (inputs = [""]) => {
   inputs.pop();
-  return inputs.map((s) => (isEnclose.call(s) ? "yes" : "no")).join("\n");
+  return inputs.map((s) => (isEnclosed.call(s) ? "yes" : "no")).join("\n");
 };
 
 export const examples = [

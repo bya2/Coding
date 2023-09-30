@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./소수/13909_창문 닫기.mjs";
+import { solution, examples } from "./스택/괄호.mjs";
 
 (function () {
   console.log("Solve:");
