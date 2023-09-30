@@ -6,6 +6,14 @@ const pairDictOfVPS = {
   "}": "{",
 };
 
+Object.defineProperties(Array.prototype, {
+  peek: {
+    get() {
+      return this[this.length - 1];
+    },
+  },
+});
+
 /**
  * @param {string[] | string} ps Parenthesis String
  */
@@ -18,7 +26,7 @@ export const isVPS = function (ps = this, pairDict = pairDictOfVPS) {
   for (const c of ps) {
     if (pairDict[c] === undefined) STACK.push(c);
     else {
-      if (STACK[STACK.length - 1] !== pairDict[c]) return false;
+      if (STACK.peek !== pairDict[c]) return false;
       STACK.pop();
     }
   }
@@ -43,4 +51,28 @@ export const isEnclosed = function (sentence = this, pairDict = pairDictOfVPS) {
   }
 
   return STACK.length === 0;
+};
+
+/**
+ * @param {number[]} numbers
+ * FAIL: 1 3 4 5 2
+ */
+export const canBeSorted = function (numbers = this) {
+  if (numbers === undefined) throw new Error(ERR_UNDEFINED);
+
+  const STACK = [];
+  let v = 1;
+
+  for (const n of numbers) {
+    while (STACK.length && STACK.peek === v) {
+      STACK.pop();
+      ++v;
+    }
+
+    if (n === v) ++v;
+    else if (STACK.length && STACK.peek < n) return false;
+    else STACK.push(n);
+  }
+
+  return true;
 };
