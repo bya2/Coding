@@ -78,6 +78,14 @@ export const countPrimesInRange = (n, m) => {
 };
 
 /**
+ * @param {number} n
+ */
+export const factorize = (n) => {
+  const factors = [];
+  
+};
+
+/**
  * @param {number} maximum
  */
 export const getSieveOfEratosthenes = (maximum) => {
