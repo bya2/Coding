@@ -6,14 +6,6 @@ const pairDictOfVPS = {
   "}": "{",
 };
 
-Object.defineProperties(Array.prototype, {
-  peek: {
-    get() {
-      return this[this.length - 1];
-    },
-  },
-});
-
 /**
  * @param {string[] | string} ps Parenthesis String
  */
@@ -26,7 +18,7 @@ export const isVPS = function (ps = this, pairDict = pairDictOfVPS) {
   for (const c of ps) {
     if (pairDict[c] === undefined) STACK.push(c);
     else {
-      if (STACK.peek !== pairDict[c]) return false;
+      if (STACK.at(-1) !== pairDict[c]) return false;
       STACK.pop();
     }
   }
@@ -64,13 +56,13 @@ export const canBeSorted = function (numbers = this) {
   let v = 1;
 
   for (const n of numbers) {
-    while (STACK.length && STACK.peek === v) {
+    while (STACK.length && STACK.at(-1) === v) {
       STACK.pop();
       ++v;
     }
 
     if (n === v) ++v;
-    else if (STACK.length && STACK.peek < n) return false;
+    else if (STACK.length && STACK.at(-1) < n) return false;
     else STACK.push(n);
   }
 
