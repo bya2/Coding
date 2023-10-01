@@ -57,7 +57,7 @@ export default class SLL {
     if (index < 0 || index >= this._length) return null;
 
     let node = this._head;
-    for (let i = 0; i <= index; ++i) node = node.next;
+    for (let i = 0; i < index; ++i) node = node.next;
     return node;
   }
 
@@ -69,7 +69,7 @@ export default class SLL {
     if (index < 0 || index >= this._length) return undefined;
 
     let node = this._head;
-    for (let i = 0; i <= index; ++i) node = node.next;
+    for (let i = 0; i < index; ++i) node = node.next;
 
     return node._inner;
   }
@@ -155,6 +155,8 @@ export default class SLL {
     prev.next = next;
     curr.next = null;
 
+    this._length--;
+
     return extractData;
   }
 
@@ -195,10 +197,6 @@ export default class SLL {
   }
 
   print() {
-    let s = "[ ";
-    for (let node = this._head; node; node = node.next)
-      s += `${node._inner} => `;
-    s += " ]";
-    return s;
+    return `[ ${this.toArray().join(" => ")} ]`;
   }
 }
