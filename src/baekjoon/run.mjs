@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./덱/풍선 터뜨리기.mjs";
+import { solution, examples } from "./조합론/다리 놓기.mjs";
 
 (function () {
   console.log("Solve:");
