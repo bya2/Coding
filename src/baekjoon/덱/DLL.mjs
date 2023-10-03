@@ -180,6 +180,25 @@ export default class DLL {
     return v;
   }
 
+  extractAt(index) {
+    if (index < 0) index += this._length;
+    if (index < 0 || index >= this._length) return undefined;
+    if (index === 0) return this.shift();
+
+    const prev = this._at(index - 1);
+    const curr = prev.next;
+    const next = curr.next;
+
+    const extractData = curr._inner;
+
+    prev.next = next;
+    curr.next = null;
+
+    this._length--;
+
+    return extractData;
+  }
+
   clear() {
     let node = this._head;
     while (node) {
