@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./조합론/다리 놓기.mjs";
+import { solution, examples } from "./영단어 암기는 괴로워.mjs";
 
 (function () {
   console.log("Solve:");
