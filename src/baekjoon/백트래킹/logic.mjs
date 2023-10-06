@@ -1,3 +1,14 @@
+export const memoize = (cb) => {
+  const cache = new Map();
+  return (arg) => {
+    if (!cache.has(arg)) {
+      cache.set(arg, cb(arg));
+      console.log(cache);
+    }
+    return cache.get(arg);
+  };
+};
+
 /**
  *
  * @param {*} length

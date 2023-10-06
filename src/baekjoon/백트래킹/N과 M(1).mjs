@@ -1,4 +1,15 @@
-function combine(length) {
+const memoize = (cb) => {
+  const cache = new Map();
+  return (arg) => {
+    if (!cache.has(arg)) {
+      cache.set(arg, cb(arg));
+      console.log(cache);
+    }
+    return cache.get(arg);
+  };
+};
+
+const combine = (length) => {
   const combinations = [];
 
   const recur = (acc, marked) => {
@@ -18,7 +29,7 @@ function combine(length) {
   );
 
   return combinations;
-}
+};
 
 Object.defineProperty(Array.prototype, "combine", {
   value: combine,
