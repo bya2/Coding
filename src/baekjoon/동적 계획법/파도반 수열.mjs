@@ -1,4 +1,4 @@
-const memo = [
+const memoizedSeq = [
   0,
   1,
   1,
@@ -10,24 +10,20 @@ const memo = [
   5,
   7,
   9,
-  ...Array.from({ length: 90 }, () => 0),
+  ...Array.from({ length: 91 }, () => 0),
 ];
 
 /**
  * @param {string[]} lines
  */
 export const solution = (lines) => {
-  const fibo = (n) => {
-    if (memo[n]) return memo[n];
-    else return (memo[n] = fibo(n - 1) + fibo(n - 5));
+  const getFibonacci = (n) => {
+    if (memoizedSeq[n]) return memoizedSeq[n];
+    else return (memoizedSeq[n] = getFibonacci(n - 1) + getFibonacci(n - 5));
   };
 
   lines.shift();
-  return lines
-    .map((n) => {
-      return fibo(+n);
-    })
-    .join("\n");
+  return lines.map((v) => getFibonacci(+v)).join("\n");
 };
 
 export const examples = [
