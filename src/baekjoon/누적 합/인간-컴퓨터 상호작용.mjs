@@ -5,18 +5,25 @@ export const solution = (lines) => {
   const s = lines.shift();
   lines.shift();
 
-  const codes = s.split("").map((elem) => elem.charCodeAt(0) - 97);
-
-  const dp = Array.from({ length: s.length + 1 }, () =>
-    Array.from({ length: 26 }, () => 0)
-  );
+  const codes = s.split("").map((e) => e.charCodeAt(0) - 97);
+  const dp = new Array(s.length + 1).map((_) => new Array(27).fill(0));
 
   for (let i = 1; i <= codes.length; ++i) {
-    for (let j = 0; j < 26; ++j) dp[i][j] = dp[i - 1][j];
-    dp[i][codes[i - 1]] += 1;
+    for (let j = 1; j <= 26; ++j) {
+      dp[i][j] = dp[i - 1][j];
+    }
+    dp[i][codes[i]]++;
   }
 
   console.log(dp);
+
+  return lines
+    .map((line) => {
+      const [char, i, j] = line.split(" ");
+      const code = char.charCodeAt(0) - 97;
+      return dp[i][code] - dp[j - 1][code];
+    })
+    .join("\n");
 };
 
 /**
