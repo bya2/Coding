@@ -1,7 +1,51 @@
+Object.defineProperties(Array.prototype, {
+  print: {
+    value(arr = this) {
+      const outputs = [];
+      for (let i = 0; i < arr.length; ++i) {
+        outputs.push(`${i}:\t${arr[i]}`);
+      }
+      console.log(outputs.join("\n"));
+    },
+  },
+});
+
 /**
  * @param {string[]} lines
  */
 export const solution = (lines) => {
+  const [S, _, ...inputs] = lines;
+  const codes = [...S].map((e) => e.charCodeAt(0) - 97);
+
+  const dp = Array.from({ length: S.length + 1 }, () => new Array(26).fill(0));
+
+  // i: 입력된 문자열i
+  // j: 알파벳 현황i
+
+  for (let si = 1; si <= S.length; ++si) {
+    for (let ai = 0; ai < 26; ++ai) {
+      dp[si][ai] = dp[si - 1][ai];
+    }
+    dp[si][codes[si - 1]]++;
+  }
+
+  return inputs
+    .map((input) => {
+      let [c, a, b] = input.split(" ");
+      a = +a;
+      b = +b;
+      const ci = c.charCodeAt(0) - 97;
+
+      console.log(`${c} -> ${a}~${b} -> ${dp[a][ci]}, ${dp[b + 1][ci]}`);
+      return dp[b + 1][ci] - dp[a][ci];
+    })
+    .join("\n");
+};
+
+/**
+ * @param {string[]} lines
+ */
+export const fail2 = (lines) => {
   const s = lines.shift();
   lines.shift();
 
@@ -9,10 +53,11 @@ export const solution = (lines) => {
   const dp = new Array(s.length + 1).map((_) => new Array(27).fill(0));
 
   for (let i = 1; i <= codes.length; ++i) {
+    const code = codes[i];
     for (let j = 1; j <= 26; ++j) {
       dp[i][j] = dp[i - 1][j];
     }
-    dp[i][codes[i]]++;
+    dp[i][code]++;
   }
 
   console.log(dp);
