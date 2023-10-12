@@ -1,6 +1,6 @@
 // ※ 조합식
 // n개중에 r개를 뽑는 조합
-// nCr = nPr/r! = n!/(r!(n-r)!)
+// nCr = nPr/r! = n!/(r!(n-r)!) = 경우의 수
 
 /**
  * @param {string[]} lines
