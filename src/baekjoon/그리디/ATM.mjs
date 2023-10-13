@@ -1,4 +1,18 @@
-export const solution = (inputs = [""]) => {
+/**
+ * @param {string[]} lines
+ */
+export const solution = (lines) => {
+  let indi = 0;
+  return (
+    lines[1]
+      .split(" ")
+      .map(Number)
+      .sort((a, b) => a - b)
+      .reduce((acc, n) => ((indi += n), acc + indi), 0) + ""
+  );
+};
+
+export const ok = (inputs = [""]) => {
   let prevAcc = 0;
   return (
     inputs[1]

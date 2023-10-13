@@ -1,4 +1,23 @@
-export const solution = (inputs = [""]) => {
+/**
+ * @param {string[]} lines
+ */
+export const solution = (lines) => {
+  const N = +lines[0];
+  const distances = lines[1].split(" ").map(BigInt);
+  const prices = lines[2].split(" ").map(BigInt);
+
+  let total = BigInt(0);
+  let minimum = prices[0];
+
+  for (let i = 0; i < distances.length; ++i) {
+    minimum = Math.min(minimum, prices[i]);
+    total += minimum * distances[i];
+  }
+
+  return total + "";
+};
+
+export const ok = (inputs = [""]) => {
   const len = +inputs[0] - 1;
   const distances = inputs[1].split(" ").map(BigInt);
   const costs = inputs[2].split(" ").map(BigInt);

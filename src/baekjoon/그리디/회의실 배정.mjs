@@ -1,4 +1,24 @@
-export const solution = (inputs = [""]) => {
+/**
+ * @param {string[]} lines
+ */
+export const solution = (lines) => {
+  lines.shift();
+  lines = lines.map((line) => line.split(" ").map(Number));
+  lines.sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]));
+
+  let count = 0;
+  let prev = 0;
+  for (const [s, e] of lines) {
+    if (s >= prev) {
+      prev = e;
+      count++;
+    }
+  }
+
+  return count + "";
+};
+
+export const ok = (inputs = [""]) => {
   inputs.shift();
   inputs = inputs.map((s) => s.split(" ").map(Number));
   inputs.sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]));

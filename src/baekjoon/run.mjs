@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./누적 합/구간 합 구하기 5.mjs";
+import { solution, examples } from "./그리디/ATM.mjs";
 
 (function () {
   console.log("Solve:");
