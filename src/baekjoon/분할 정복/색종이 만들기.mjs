@@ -1,3 +1,40 @@
+/**
+ * @param {string[]} lines
+ */
+export const solution = (lines) => {
+  let [N, ...board] = lines;
+  N = +N;
+  board = board.map((row) => row.split(" ").map(Number));
+
+  const counts = [0, 0];
+
+  const isFilledSameThing = (r, c, length) => {
+    const base = board[r][c];
+    for (let i = r; i < r + length; ++i) {
+      for (let j = c; j < c + length; ++j) {
+        if (board[i][j] !== base) return false;
+      }
+    }
+    return true;
+  };
+
+  (function subdivide(r, c, length) {
+    if (isFilledSameThing(r, c, length)) {
+      board[r][c] === 0 ? counts[0]++ : counts[1]++;
+    } else {
+      const half = length / 2;
+      const nR = r + half;
+      const nC = c + half;
+      subdivide(r, c, half);
+      subdivide(nR, c, half);
+      subdivide(r, nC, half);
+      subdivide(nR, nC, half);
+    }
+  })(0, 0, N);
+
+  return counts.join("\n");
+};
+
 function countOnesIn2D(arr, x, y, width, height) {
   if (!height) height = width;
   let count = 0;
@@ -9,7 +46,7 @@ function countOnesIn2D(arr, x, y, width, height) {
   return count;
 }
 
-export const solution = (inputs = [""]) => {
+export const other = (inputs = [""]) => {
   inputs.shift();
   inputs = inputs.map((input) => input.split(" ").map(Number));
 
