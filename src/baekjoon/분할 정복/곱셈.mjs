@@ -1,7 +1,7 @@
 /**
  * @param {string[]} lines
  */
-export const solution = (lines) => {
+export const other = (lines) => {
   const [A, B, C] = lines[0].split(" ").map(BigInt);
 
   return (
@@ -19,25 +19,24 @@ export const solution = (lines) => {
   );
 };
 
-export const fail = (lines) => {
+export const solution = (lines) => {
   const [A, B, C] = lines[0].split(" ").map(BigInt);
 
   let b = B;
   const multiForms = [];
   while (b > 1) {
-    const isOdd = b % 2n === 0 ? false : true;
-    multiForms.push(isOdd);
-    if (isOdd) b--;
+    multiForms.push(n % 2n);
     b /= 2n;
   }
 
   const D = A % C;
-  let n = A;
-  for (const form of multiForms) {
+  let n = D;
+  for (let i = multiForms.length - 1; i >= 0; --i) {
     n **= 2n;
-    form && (n *= D);
+    if (multiForms[i]) n *= D;
     n %= C;
   }
+
   return n + "";
 };
 
