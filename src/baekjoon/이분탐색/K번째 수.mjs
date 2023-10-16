@@ -1,30 +1,24 @@
-const binarySearch = () => {
-  let minimum = 1;
-  let maximum = n ** 2;
+import "./logic.mjs";
 
-  while (minimum <= maximum) {
-    const median = ~~((minimum + maximum) / 2);
-    let count = 0;
-    for (let i = 1; i <= n; ++i) count += Math.min(m, ~~(median / i));
-    if (count >= k) maximum = median - 1;
-    else minimum = median + 1;
-  }
-
-  return maximum;
-};
-
-export const solution = (inputs = [""]) => {
-  const [n, k] = inputs;
+/**
+ * @param {string[]} lines
+ */
+export const solution = (lines) => {
+  const [n, k] = lines.map(Number);
 
   let minimum = 1;
-  let maximum = n ** 2;
+  let maximum = k;
 
   while (minimum <= maximum) {
-    const median = ~~((minimum + maximum) / 2);
+    let median = (minimum + maximum) >> 1;
+
     let count = 0;
-    for (let i = 1; i <= n; ++i) count += Math.min(n, ~~(median / i));
-    if (count >= k) maximum = median - 1;
-    else minimum = median + 1;
+    for (let i = 1; i <= n; ++i) {
+      count += Math.min((median / i) >> 0, n);
+    }
+
+    if (count >= k) maximum = --median;
+    else minimum = ++median;
   }
 
   return minimum + "";
