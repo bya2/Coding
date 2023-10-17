@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./이분탐색/K번째 수.mjs";
+import { solution, examples } from "./동적 계획법/파일 합치기.mjs";
 
 (function () {
   console.log("Solve:");
