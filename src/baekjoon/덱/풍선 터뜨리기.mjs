@@ -1,14 +1,18 @@
 import DLL from "./DLL.mjs";
 
-Array.prototype.toDLL = function () {
-  const deq = new DLL();
-  for (let i = 0; i < this.length; ++i)
-    deq.push({
-      i: i + 1,
-      n: this[i],
-    });
-  return deq;
-};
+Object.defineProperties(Array.prototype, {
+  toDLL: {
+    value() {
+      const deq = new DLL();
+      for (let i = 0; i < this.length; ++i)
+        deq.push({
+          i: i + 1,
+          n: this[i],
+        });
+      return deq;
+    },
+  },
+});
 
 DLL.prototype.popAt = function (index) {
   if (index < 0) index += this._length;
@@ -29,15 +33,15 @@ DLL.prototype.popAt = function (index) {
   return v;
 };
 
-// DLL.prototype.print = function () {
-//   return (
-//     "[ " +
-//     this.toArray()
-//       .map((obj) => obj.n)
-//       .join(" <=> ") +
-//     " ]"
-//   );
-// };
+DLL.prototype.print = function () {
+  return (
+    "[ " +
+    this.toArray()
+      .map((obj) => obj.n)
+      .join(" <=> ") +
+    " ]"
+  );
+};
 
 /**
  * @param {string[]} lines
