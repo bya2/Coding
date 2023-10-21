@@ -1,4 +1,4 @@
-import Heap from "./index.mjs";
+import Heap from "./BinaryHeap.mjs";
 
 export const solution = (inputs = [""]) => {
   inputs.shift();
@@ -6,7 +6,7 @@ export const solution = (inputs = [""]) => {
   return inputs
     .reduce(
       (arr, n) => (
-        n === "0" ? arr.push(heap.extract() ?? 0) : heap.insert(+n), arr
+        n === "0" ? arr.push(heap.pop() ?? 0) : heap.push(+n), arr
       ),
       []
     )

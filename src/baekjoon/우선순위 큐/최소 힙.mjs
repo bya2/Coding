@@ -1,4 +1,4 @@
-import Heap from "./index.mjs";
+import Heap from "./BinaryHeap.mjs";
 
 export const solution = (inputs = [""]) => {
   inputs.shift();
