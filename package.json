@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/bya2/coding.git"
   },
-  "packageManager": "yarn@3.3.0",
+  "packageManager": "yarn@3.6.4",
   "main": "src/run.mjs",
   "scripts": {
     "run": "node src/run.mjs"
