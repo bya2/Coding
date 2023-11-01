@@ -29,7 +29,7 @@ export const solution = (lines) => {
     b /= 2n;
   }
 
-  const D = A % C;
+  const D = A % C;  
   let n = D;
   for (let i = multiForms.length - 1; i >= 0; --i) {
     n **= 2n;

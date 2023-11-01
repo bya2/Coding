@@ -41,6 +41,7 @@ class BinaryHeap<T> implements ImplBinaryHeap<T> {
 
   pop(): T | null {
     if (this.length < 0) throw new Error(ERR_LENGTH);
+    if (this.length === 0) return 
   }
 
   siftUp(start: number, pos: number): number {

@@ -16,7 +16,7 @@ export const solution = (lines) => {
     const area = Math.max(highH, Math.min(arr[mli], arr[mri]));
 
     while (mli > li || mri < ri) {
-      
+      if (mri < ri && )
     }
   };
 };
