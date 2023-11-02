@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./동적 계획법/파일 합치기.mjs";
+import { solution, examples } from "./투포인터/두 수의 합.mjs";
 
 (function () {
   console.log("Solve:");
