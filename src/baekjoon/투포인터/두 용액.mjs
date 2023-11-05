@@ -12,13 +12,13 @@ export const solution = (lines) => {
   let j = n - 1;
   let sum = 0;
   let maximum = Number.MAX_SAFE_INTEGER;
-  let ans_pair = new Array(2).fill(0);
+  let pair = new Array(2).fill(0);
   while (i !== j) {
     sum = inputs[i] + inputs[j];
     if (Math.abs(sum) < maximum) {
       maximum = Math.abs(sum);
-      ans_pair[0] = inputs[i];
-      ans_pair[1] = inputs[j];
+      pair[0] = inputs[i];
+      pair[1] = inputs[j];
     }
     if (sum === 0) {
       break;
@@ -29,7 +29,7 @@ export const solution = (lines) => {
     }
   }
 
-  return ans_pair.join(" ");
+  return pair.join(" ");
 };
 
 export const examples = [
