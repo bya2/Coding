@@ -48,32 +48,54 @@ export const solution = (lines) => {
   const n = +lines[0];
   const primes = new SieveOfEratosthenes(n).getPrimes();
 
-  let i = 0;
-  let j = 0;
-  let acc = primes[i];
-  let count = 0;
+  let i = 0,
+    j = 0,
+    acc = 0,
+    count = 0;
 
-  while (i < primes.length) {
-    if (i > j) {
-      j = i;
-      acc = primes[j];
-    }
-
-    if (acc === n) {
+  while (j < primes.length) {
+    acc += primes[j];
+    while (acc > n) {
+      acc -= primes[i];
       i++;
-      j++;
-      count++;
-    } else if (acc > n) {
-      acc -= primes[i++];
-    } else {
-      acc += primes[++j];
     }
-
-    if (j === primes.length) break;
+    if (acc === n) count++;
+    j++;
   }
 
   return count + "";
 };
+
+// export const solution = (lines) => {
+//   const n = +lines[0];
+//   const primes = new SieveOfEratosthenes(n).getPrimes();
+
+//   let i = 0;
+//   let j = 0;
+//   let acc = primes[i];
+//   let count = 0;
+
+//   while (i < primes.length) {
+//     if (i > j) {
+//       j = i;
+//       acc = primes[j];
+//     }
+
+//     if (acc === n) {
+//       i++;
+//       j++;
+//       count++;
+//     } else if (acc > n) {
+//       acc -= primes[i++];
+//     } else {
+//       acc += primes[++j];
+//     }
+
+//     if (j === primes.length) break;
+//   }
+
+//   return count + "";
+// };
 
 export const examples = [
   {

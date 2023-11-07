@@ -4,6 +4,7 @@
 export const solution = (lines) => {
   let n = +lines[0];
   let inputs = lines[1]
+  
     .split(" ")
     .map(Number)
     .sort((a, b) => a - b);
