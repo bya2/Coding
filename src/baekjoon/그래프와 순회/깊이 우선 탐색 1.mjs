@@ -1,26 +1,17 @@
-const memoize = (fn) => {
-  const cache = {};
-  return (arg) => {
-    const k = JSON.stringify(arg);
-    if (!(k in cache)) cache[k] = fn(arg);
-    return cache[arg];
-  };
-};
-
 /**
  * @param {any[]} V 정점 집합
  * @param {Map<any, any[]>} E 간선 집합
  * @param {any[]} R 시작 정점
  */
 const DFS = (V, E, R) => {
-  const map = new Map();
+  const discovered = new Map();
+
+  discovered.set(R, true);
 
   const recur = (node) => {
-    if (!map.has(node)) {
+    if (!discovered.has(node)) {
       return;
     }
-
-
   };
 
   return recur(R);

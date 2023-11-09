@@ -1,29 +1,4 @@
 /**
- * 중복X
- * @param {*} length
- * @returns
- */
-export function combine(length) {
-  const combinations = [];
-
-  const recur = (acc, index) => {
-    if (acc.length === length) {
-      combinations.push(acc.join(" "));
-      return;
-    }
-
-    for (let i = index, len = this.length; i < len; ++i) {
-      recur([...acc, this[i]], i + 1);
-    }
-  };
-
-  recur([], 0);
-
-  return combinations;
-}
-
-
-/**
  * @param {string[]} lines
  */
 export const solution = (lines) => {
@@ -33,7 +8,16 @@ export const solution = (lines) => {
   let acc = 0;
   let count = 1;
 
-
+  const DFS = (s, e, acc, v) => {
+    if (s >= e) {
+      v.push(acc);
+      return;
+    }
+  
+    s++;
+    DFS(s, e, acc, v);
+    DFS(s, e, acc + W[s], v);
+  };
 };
 
 // 문제: 경우의 수가 아닌 범위의 문제로 풀음
