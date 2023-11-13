@@ -81,7 +81,7 @@ export const solution2 = (lines) => {
 };
 
 export const solution = (lines) => {
-  const [[N, M, R], ...edges] = lines.map((line) =>
+  const [[N, _, R], ...edges] = lines.map((line) =>
     line.split(" ").map(Number)
   );
 
@@ -94,33 +94,31 @@ export const solution = (lines) => {
     else g.set(v, [u]);
   }
 
-  console.log(g);
+  const visited = new Map();
+  for (const node of g.keys()) visited.set(node, false);
 
-  const vm = new Map();
-  for (const n of g.keys()) vm.set(n, false);
+  const STACK = [R];
+  const orders = Array(N + 1).fill(0);
 
-  const STACK = [];
-  const ord = Array(N + 1).fill(0);
-
-  let node;
+  let curr;
   let i = 0;
-  STACK.push(R);
-  while ((node = STACK.pop())) {
-    if (vm.get(node)) continue;
+  while ((curr = STACK.pop())) {
+    if (visited.get(curr)) {
+      continue;
+    }
 
-    vm.set(node, true);
-    ord[node] = ++i;
+    visited.set(curr, true);
+    orders[curr] = ++i;
 
-    for (const adj of g.get(node).sort((a, b) => a - b)) {
-      console.log(node, adj, g.get(node));
-      if (!vm.get(adj)) {
+    for (const adj of g.get(curr).sort((a, b) => b - a)) {
+      if (!visited.get(adj)) {
         STACK.push(adj);
       }
     }
   }
 
-  ord.shift();
-  return ord.join("\n");
+  orders.shift();
+  return orders.join("\n");
 };
 
 export const examples = [
@@ -136,5 +134,15 @@ export const examples = [
     3
     4
     0`,
+  },
+  {
+    inputs: `4 3 4
+    1 4
+    3 4
+    2 4`,
+    answer: `2
+    3
+    4
+    1`,
   },
 ];
