@@ -1,3 +1,5 @@
+import DLL from "./DLL.mjs";
+
 /**
  * @param {string[]} lines
  */
@@ -21,7 +23,8 @@ export const solution = (lines) => {
   const ord = Array(N + 1).fill(0);
 
   let i = 0;
-  const queue = [];
+  // const queue = [];
+  const queue = new DLL();
 
   (function BFS(node) {
     vm[node] = true;

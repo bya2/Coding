@@ -1,5 +1,5 @@
 import runner from "./runner.mjs";
-import { solution, examples } from "./동적 계획법과 최단거리 역추적/1로 만들기 2.mjs";
+import { solution, examples } from "./그래프와 순회/너비 우선 탐색 1.mjs";
 
 (function () {
   console.log("Solve:");
