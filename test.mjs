@@ -1,21 +1,24 @@
-const isPrime = (n) => {
-  if (n <= 1) return false;
-  if (n <= 3) return true;
-  if (n % 2 === 0 || n % 3 === 0) return false;
+function a(flag) {
+  return new Promise((resolve, reject) => {
+    flag ? resolve(1) : reject(2);
+  });
+}
 
-  for (let i = 5; i <= Math.sqrt(n); i += 2) {
-    if (n % i === 0) return false;
-  }
+// a(1).then((n) => {
+//   console.log(n);
+// });
 
-  return true;
-};
+// console.log(a(0).catch((n) => n));
 
-const getPrimes = (n) => {
-  const arr = [2];
-  for (let i = 3; i <= n; i += 2) {
-    if (isPrime(i)) arr.push(i);
-  }
-  return arr;
-};
+// console.log(a(1).then((n) => n));
 
-console.log(getPrimes(100));
+// console.log(Promise.resolve(1));
+// console.log(Promise.reject(1).catch(() => {}));
+
+console.log(a(1).then(() => 3));
+
+console.log(
+  new Promise(() => {}).then(() => {
+    r;
+  })
+);
